@@ -11,13 +11,19 @@
 }(this, function () {
     'use strict';
 
-    var turkishAlphabetFix = {
+    var TURKISH_ALPHABET_FIX = {
         'ç': 099.5, 'Ç': 67.5,
         'ğ': 103.5, 'Ğ': 71.5,
         'ı': 104.5, 'İ': 74.5,
         'ş': 115.5, 'Ş': 83.5,
         'ö': 111.5, 'Ö': 79.5,
         'ü': 117.5, 'Ü': 85.5
+    };
+
+    var COMPARISON_RESULT = {
+        LESS_THAN : -1,
+        EQUAL : 0,
+        GREATER_THAN : 1
     };
 
     /**
@@ -35,7 +41,7 @@
      * @returns {number}
      */
     function getCharCode(char) {
-        return (char === '' ? null : (turkishAlphabetFix[char] || char.charCodeAt(0)));
+        return (char === '' ? null : (TURKISH_ALPHABET_FIX[char] || char.charCodeAt(0)));
     }
 
     return (function () {
@@ -107,21 +113,21 @@
             }
             var sourceIndex;
             var destinationIndex;
-            var minLength = Math.max(source.length, destination.length);
-            for (var i = 0; i < minLength; i++) {
+            var maxLength = Math.max(source.length, destination.length);
+            for (var i = 0; i < maxLength; i++) {
                 sourceIndex = getCharCode(source.charAt(i));
                 destinationIndex = getCharCode(destination.charAt(i));
                 if (sourceIndex === null) {
-                    return destinationIndex === null ? 0 : -1;
+                    return destinationIndex === null ? COMPARISON_RESULT.EQUAL : COMPARISON_RESULT.LESS_THAN;
                 }
                 else if (destinationIndex === null) {
-                    return 1;
+                    return COMPARISON_RESULT.GREATER_THAN;
                 }
                 else if (sourceIndex !== destinationIndex) {
-                    return (sourceIndex - destinationIndex < 0 ? -1 : 1);
+                    return (sourceIndex - destinationIndex < 0 ? COMPARISON_RESULT.LESS_THAN : COMPARISON_RESULT.GREATER_THAN);
                 }
             }
-            return 0;
+            return COMPARISON_RESULT.EQUAL;
         };
 
         /**
@@ -131,7 +137,7 @@
          * @returns {boolean}
          */
         TurkishString.isGreaterThan = function (source, destination) {
-            return TurkishString.compare(source, destination) === 1;
+            return TurkishString.compare(source, destination) === COMPARISON_RESULT.GREATER_THAN;
         };
 
         /**
@@ -151,7 +157,7 @@
         */
         TurkishString.isGreaterThanOrEqual = function (source, destination) {
             var result = TurkishString.compare(source, destination);
-            return result === 0 || result === 1;
+            return result === COMPARISON_RESULT.EQUAL || result === COMPARISON_RESULT.GREATER_THAN;
         };
 
         /**
@@ -170,7 +176,7 @@
          * @returns {boolean}
          */
         TurkishString.isLessThan = function (source, destination) {
-            return TurkishString.compare(source, destination) === -1;
+            return TurkishString.compare(source, destination) === COMPARISON_RESULT.LESS_THAN;
         };
 
         /**
@@ -190,7 +196,7 @@
          */
         TurkishString.isLessThanOrEqual = function (source, destination) {
             var result = TurkishString.compare(source, destination);
-            return result === -1 || result === 0;
+            return result === COMPARISON_RESULT.LESS_THAN || result === COMPARISON_RESULT.EQUAL;
         };
 
         /**
