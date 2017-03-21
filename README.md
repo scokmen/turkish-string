@@ -1,2 +1,2 @@
 # js-turkish-sort
-A simple efficient sorting algorithm for Turkish Language
+turkish alphabet implementations of simple string utilities

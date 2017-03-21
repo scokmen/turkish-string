@@ -2,8 +2,8 @@
   "private": false,
   "name": "js-turkish-sort",
   "version": "0.0.1",
-  "description": "A simple efficient sorting algorithm for Turkish Language",
-  "main": "dist/js-turkish-sort.min.js",
+  "description": "turkish alphabet implementations of simple string utilities",
+  "main": "dist/turkish-sort.min.js",
   "author": "Soner Çökmen <sonercokmen@gmail.com>",
   "license": "MIT",
   "repository": {

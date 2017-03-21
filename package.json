@@ -2,8 +2,8 @@
   "private": false,
   "name": "js-turkish-sort",
   "version": "0.0.1",
-  "description": "A simple efficient sorting algorithm for Turkish Language",
-  "main": "dist/js-turkish-sort.min.js",
+  "description": "turkish alphabet implementations of simple string utilities",
+  "main": "dist/turkish-sort.min.js",
   "author": "Soner Çökmen <sonercokmen@gmail.com>",
   "license": "MIT",
   "repository": {
@@ -20,8 +20,17 @@
     "turkish-language"
   ],
   "scripts": {
-    "js:hint": "",
-    "js:test": "",
-    "js:build": ""
+    "js:hint": "gulp js:hint",
+    "js:test": "gulp js:test",
+    "js:build": "gulp js:build"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-jasmine": "^2.3.0",
+    "gulp-jshint": "^2.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.3",
+    "jshint": "^2.9.2",
+    "jshint-stylish": "^2.2.0"
   }
 }
