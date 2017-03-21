@@ -3,9 +3,9 @@ var TurkishString = require('../src/turkish-string.js');
 
 describe('TurkishString.constructor tests', function () {
 
-    var errorMessage = 'TurkishString object must be initialized with string object.';
+    it('constructor should throw error when parameter is not a valid string', function () {
 
-    it('TurkishString.constructor should throw error when parameter is not a valid string()', function () {
+        var errorMessage = 'TurkishString object must be initialized with string object.';
 
         var objectParam = {};
         var numberParam = faker.random.number();
@@ -34,7 +34,6 @@ describe('TurkishString.constructor tests', function () {
         expect(function () {
             new TurkishString(undefinedParam)
         }).toThrowError(errorMessage);
-
         expect(function () {
             new TurkishString(emptyStringParam)
         }).not.toThrowError(errorMessage);

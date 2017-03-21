@@ -30,24 +30,12 @@
     }
 
     /**
-     * Is parameter a valid one-length string?
-     * @param  {string} char
-     * @return {boolean}
-     */
-    function isChar(char) {
-        return isString(char) && char.length === 1 && char.charCodeAt(0) >= 32;
-    }
-
-    /**
      * Get ascii code of given char.
      * @param {string} char
      * @returns {number}
      */
     function getCharCode(char) {
-        if (isChar(char)) {
-            return turkishAlphabetFix[char] || char.charCodeAt(0);
-        }
-        return Number.MAX_VALUE;
+        return (char === '' ? null : (turkishAlphabetFix[char] || char.charCodeAt(0)));
     }
 
     return (function () {
@@ -105,6 +93,35 @@
          */
         TurkishString.prototype.toUpperCase = function () {
             return TurkishString.toUpperCase(this.source);
+        };
+
+        /**
+         * Compare the given strings
+         * @param {string} source
+         * @param {string} destination
+         * @returns {number} standard js compare result -1, 0, 1
+         */
+        TurkishString.compare = function (source, destination) {
+            if (!isString(source) || !isString(destination)) {
+                throw new Error('Arguments must be string object.');
+            }
+            var sourceIndex;
+            var destinationIndex;
+            var minLength = Math.max(source.length, destination.length);
+            for (var i = 0; i < minLength; i++) {
+                sourceIndex = getCharCode(source.charAt(i));
+                destinationIndex = getCharCode(destination.charAt(i));
+                if (sourceIndex === null) {
+                    return destinationIndex === null ? 0 : -1;
+                }
+                else if (destinationIndex === null) {
+                    return 1;
+                }
+                else if (sourceIndex !== destinationIndex) {
+                    return (sourceIndex - destinationIndex < 0 ? -1 : 1);
+                }
+            }
+            return 0;
         };
 
         return TurkishString;
