@@ -50,7 +50,7 @@
         return Number.MAX_VALUE;
     }
 
-    return function () {
+    return (function () {
 
         function TurkishString(source) {
             if (!isString(source)) {
@@ -94,7 +94,7 @@
                 var turkishString = str.replace(/(([iışğüçö]))/g, function (letter) {
                     return letters[letter];
                 });
-                return turkishString.toLowerCase();
+                return turkishString.toUpperCase();
             }
             return '';
         };
@@ -107,6 +107,7 @@
             return TurkishString.toUpperCase(this.source);
         };
 
-    };
+        return TurkishString;
+    })();
 
 }));

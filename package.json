@@ -25,6 +25,7 @@
     "js:build": "gulp js:build"
   },
   "devDependencies": {
+    "faker": "^4.1.0",
     "gulp": "^3.9.1",
     "gulp-jasmine": "^2.3.0",
     "gulp-jshint": "^2.0.1",

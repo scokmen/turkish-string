@@ -12,9 +12,9 @@ var jshint = require('gulp-jshint');
 /**
  * Configs
  */
-var specFiles = './specs/**/*.[s|S]pec.js';
-var sourceFile = './src/turkish-sort.js';
-var destinationFile = 'turkish-sort.min.js';
+var specFiles = './spec/**/*.[sS]pec.js';
+var sourceFile = './src/turkish-string.js';
+var destinationFile = 'turkish-string.min.js';
 
 //Run js-hint for source file.
 gulp.task('js:hint', function () {
