@@ -1,0 +1,27 @@
+{
+  "private": false,
+  "name": "js-turkish-sort",
+  "version": "0.0.1",
+  "description": "A simple efficient sorting algorithm for Turkish Language",
+  "main": "dist/js-turkish-sort.min.js",
+  "author": "Soner Çökmen <sonercokmen@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scokmen/js-turkish-sort.git"
+  },
+  "bugs": {
+    "url": "https://github.com/scokmen/js-turkish-sort/issues"
+  },
+  "homepage": "https://github.com/scokmen/js-turkish-sort#readme",
+  "keywords": [
+    "sort",
+    "turkish",
+    "turkish-language"
+  ],
+  "scripts": {
+    "js:hint": "",
+    "js:test": "",
+    "js:build": ""
+  }
+}

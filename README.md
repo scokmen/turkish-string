@@ -1,2 +1,2 @@
 # js-turkish-sort
-turkish sorting algorithms for bower &amp; npm
+A simple efficient sorting algorithm for Turkish Language
