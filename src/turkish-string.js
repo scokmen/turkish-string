@@ -124,6 +124,84 @@
             return 0;
         };
 
+        /**
+         * Is source parameter greater than destination parameter?
+         * @param {string} source
+         * @param {string} destination
+         * @returns {boolean}
+         */
+        TurkishString.isGreaterThan = function (source, destination) {
+            return TurkishString.compare(source, destination) === 1;
+        };
+
+        /**
+         * Is TurkishString instance greater than target parameter?
+         * @param {string} target
+         * @returns {boolean}
+         */
+        TurkishString.prototype.isGreaterThan = function (target) {
+            return TurkishString.isGreaterThan(this.source, target);
+        };
+
+        /**
+        * Is source parameter greater than or equal to destination parameter?
+        * @param {string} source
+        * @param {string} destination
+        * @returns {boolean}
+        */
+        TurkishString.isGreaterThanOrEqual = function (source, destination) {
+            var result = TurkishString.compare(source, destination);
+            return result === 0 || result === 1;
+        };
+
+        /**
+         * Is TurkishString instance greater than or equal to target parameter?
+         * @param {string} target
+         * @returns {boolean}
+         */
+        TurkishString.prototype.isGreaterThanOrEqual = function (target) {
+            return TurkishString.isGreaterThanOrEqual(this.source, target);
+        };
+
+        /**
+         * Is source parameter less than destination parameter?
+         * @param {string} source
+         * @param {string} destination
+         * @returns {boolean}
+         */
+        TurkishString.isLessThan = function (source, destination) {
+            return TurkishString.compare(source, destination) === -1;
+        };
+
+        /**
+         * Is TurkishString instance less than target parameter?
+         * @param {string} target
+         * @returns {boolean}
+         */
+        TurkishString.prototype.isLessThan = function (target) {
+            return TurkishString.isLessThan(this.source, target);
+        };
+
+        /**
+         * Is source parameter less than or equal to destination parameter?
+         * @param {string} source
+         * @param {string} destination
+         * @returns {boolean}
+         */
+        TurkishString.isLessThanOrEqual = function (source, destination) {
+            var result = TurkishString.compare(source, destination);
+            return result === -1 || result === 0;
+        };
+
+        /**
+         * Is TurkishString instance less than or equal to target parameter?
+         * @param {string} target
+         * @returns {boolean}
+         */
+        TurkishString.prototype.isLessThanOrEqual = function (target) {
+            return TurkishString.isLessThanOrEqual(this.source, target);
+        };
+
         return TurkishString;
     })();
 

@@ -1,4 +1,3 @@
-var faker = require('faker');
 var TurkishString = require('../src/turkish-string.js');
 
 describe('TurkishString.compare tests', function () {
@@ -7,22 +6,15 @@ describe('TurkishString.compare tests', function () {
 
         var errorMessage = 'Arguments must be string object.';
 
-        expect(function () {
-            TurkishString.compare(null, '')
-        }).toThrowError(errorMessage);
-        expect(function () {
-            TurkishString.compare('', {})
-        }).toThrowError(errorMessage);
-        expect(function () {
-            TurkishString.compare('', '')
-        }).not.toThrowError(errorMessage);
+        expect(function(){TurkishString.compare(null, '')}).toThrowError(errorMessage);
+        expect(function(){TurkishString.compare('', {})}).toThrowError(errorMessage);
+        expect(function(){TurkishString.compare('', '')}).not.toThrowError(errorMessage);
     });
 
     it('TurkishString.compare should return 0 when strings are equal', function () {
 
         var lowerTurkishLetters = 'cçgğıisşoöuü';
         var upperTurkishLetters = 'CÇGĞIİSŞOÖUÜ';
-
 
         expect(TurkishString.compare('', '')).toBe(0);
         expect(TurkishString.compare(' ', ' ')).toBe(0);
@@ -77,5 +69,37 @@ describe('TurkishString.compare tests', function () {
 
         expect(TurkishString.compare(lowerTurkishLetters + ' ', lowerTurkishLetters)).toBe(1);
         expect(TurkishString.compare(upperTurkishLetters + ' ', upperTurkishLetters)).toBe(1);
+    });
+
+    it('TurkishString.greaterThan should return true if source is greater than destination', function () {
+
+        expect(new TurkishString('ç').isGreaterThan('c')).toBe(true);
+        expect(new TurkishString('ç').isGreaterThan('ç')).toBe(false);
+        expect(TurkishString.isGreaterThan('ç', 'c')).toBe(true);
+        expect(TurkishString.isGreaterThan('ç', 'ç')).toBe(false);
+    });
+
+    it('TurkishString.greaterThanOrEqual should return true if source is greater than or equal t0 destination', function () {
+
+        expect(new TurkishString('ç').isGreaterThanOrEqual('c')).toBe(true);
+        expect(new TurkishString('ç').isGreaterThanOrEqual('ç')).toBe(true);
+        expect(TurkishString.isGreaterThanOrEqual('ç', 'c')).toBe(true);
+        expect(TurkishString.isGreaterThanOrEqual('ç', 'ç')).toBe(true);
+    });
+
+    it('TurkishString.lessThan should return true if source is less than destination', function () {
+
+        expect(new TurkishString('c').isLessThan('ç')).toBe(true);
+        expect(new TurkishString('c').isLessThan('c')).toBe(false);
+        expect(TurkishString.isLessThan('c', 'ç')).toBe(true);
+        expect(TurkishString.isLessThan('c', 'c')).toBe(false);
+    });
+
+    it('TurkishString.lessThanOrEqual should return true if source is less than or equal t0 destination', function () {
+
+        expect(new TurkishString('c').isLessThanOrEqual('ç')).toBe(true);
+        expect(new TurkishString('c').isLessThanOrEqual('c')).toBe(true);
+        expect(TurkishString.isLessThanOrEqual('c', 'ç')).toBe(true);
+        expect(TurkishString.isLessThanOrEqual('c', 'c')).toBe(true);
     });
 });

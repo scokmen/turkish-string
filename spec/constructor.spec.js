@@ -16,29 +16,13 @@ describe('TurkishString.constructor tests', function () {
         var undefinedParam = undefined;
         var emptyStringParam = '';
 
-        expect(function () {
-            new TurkishString(objectParam)
-        }).toThrowError(errorMessage);
-        expect(function () {
-            new TurkishString(numberParam)
-        }).toThrowError(errorMessage);
-        expect(function () {
-            new TurkishString(arrayParam)
-        }).toThrowError(errorMessage);
-        expect(function () {
-            new TurkishString(booleanParam)
-        }).toThrowError(errorMessage);
-        expect(function () {
-            new TurkishString(nullParam)
-        }).toThrowError(errorMessage);
-        expect(function () {
-            new TurkishString(undefinedParam)
-        }).toThrowError(errorMessage);
-        expect(function () {
-            new TurkishString(emptyStringParam)
-        }).not.toThrowError(errorMessage);
-        expect(function () {
-            new TurkishString(nonEmptyStringParam)
-        }).not.toThrowError(errorMessage);
+        expect(function(){new TurkishString(objectParam)}).toThrowError(errorMessage);
+        expect(function(){new TurkishString(numberParam)}).toThrowError(errorMessage);
+        expect(function(){new TurkishString(arrayParam)}).toThrowError(errorMessage);
+        expect(function(){new TurkishString(booleanParam)}).toThrowError(errorMessage);
+        expect(function(){new TurkishString(nullParam)}).toThrowError(errorMessage);
+        expect(function(){new TurkishString(undefinedParam)}).toThrowError(errorMessage);
+        expect(function(){new TurkishString(emptyStringParam)}).not.toThrowError(errorMessage);
+        expect(function(){new TurkishString(nonEmptyStringParam)}).not.toThrowError(errorMessage);
     });
 });

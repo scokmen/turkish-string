@@ -1,4 +1,3 @@
-var faker = require('faker');
 var TurkishString = require('../src/turkish-string.js');
 
 describe('TurkishString.toUpperCase tests', function () {
