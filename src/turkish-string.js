@@ -133,6 +133,14 @@
         };
 
         /**
+         * Get plain string of TurkishString instance.
+         * @returns {string}
+         */
+        TurkishString.prototype.toString = function() {
+            return String(this.source).toString();
+        };
+
+        /**
          * Convert given string to ascii version.
          * @param {string} str
          * @returns {string}
