@@ -11,19 +11,36 @@
 }(this, function () {
     'use strict';
 
-    var TURKISH_ALPHABET_FIX = {
-        'ç': 099.5, 'Ç': 67.5,
-        'ğ': 103.5, 'Ğ': 71.5,
-        'ı': 104.5, 'İ': 74.5,
-        'ş': 115.5, 'Ş': 83.5,
-        'ö': 111.5, 'Ö': 79.5,
-        'ü': 117.5, 'Ü': 85.5
+    /**
+     * toAsciiString conversion map for turkish special letters.
+     */
+    var TURKISH_ASCII_TRANSFORMATION = {
+        'ç': 'c', 'ı': 'i', 'ğ': 'g', 'ş': 's', 'ö': 'o', 'ü': 'u',
+        'Ç': 'C', 'İ': 'I', 'Ğ': 'G', 'Ş': 'S', 'Ö': 'O', 'Ü': 'U'
     };
 
+    /**
+     * Defines virtual ascii codes for turkish-special letters.
+     */
+    var TURKISH_ALPHABET_FIX = {
+        'ç': 099.5, 'Ç': 67.5, 'ğ': 103.5, 'Ğ': 71.5, 'ı': 104.5, 'İ': 74.5,
+        'ş': 115.5, 'Ş': 83.5, 'ö': 111.5, 'Ö': 79.5, 'ü': 117.5, 'Ü': 85.5
+    };
+
+    /**
+     * toLower and toUpper conversion map for turkish-special letters.
+     */
+    var TURKISH_CASE_TRANSFORMATION = {
+        'İ': 'i', 'I': 'ı', 'Ş': 'ş', 'Ğ': 'ğ', 'Ü': 'ü', 'Ö': 'ö', 'Ç': 'ç',
+        'i': 'İ', 'ş': 'Ş', 'ğ': 'Ğ', 'ü': 'Ü', 'ö': 'Ö', 'ç': 'Ç', 'ı': 'I'
+    };
+
+    var TURKISH_TO_LOWER_CASE_REGEX = /[\u00C7\u011E\u0049\u0130\u00D6\u015E\u00DC]/g;
+    var TURKISH_TO_UPPER_CASE_REGEX = /[\u00E7\u011F\u0131\u0069\u00F6\u015F\u00FC]/g;
+    var TURKISH_TO_ASCII_STRING_REGEX = /[\u00E7\u011F\u0131\u00F6\u015F\u00FC\u00C7\u011E\u0130\u00D6\u015E\u00DC]/g;
+
     var COMPARISON_RESULT = {
-        LESS_THAN : -1,
-        EQUAL : 0,
-        GREATER_THAN : 1
+        LESS_THAN: -1, EQUAL: 0, GREATER_THAN: 1
     };
 
     /**
@@ -44,6 +61,26 @@
         return (char === '' ? null : (TURKISH_ALPHABET_FIX[char] || char.charCodeAt(0)));
     }
 
+    /**
+     * Return lowercase or uppercase version of given letter
+     * by using TURKISH_CASE_TRANSFORMATION map.
+     * @param {string} letter
+     * @returns {string}
+     */
+    function changeLetterCase(letter) {
+        return TURKISH_CASE_TRANSFORMATION[letter];
+    }
+
+    /**
+     * Return ascii-standard version of given letter
+     * by using TURKISH_CASE_TRANSFORMATION map.
+     * @param {string} letter
+     * @returns {string}
+     */
+    function mapTurkishLetterToAscii(letter) {
+        return TURKISH_ASCII_TRANSFORMATION[letter];
+    }
+
     return (function () {
 
         function TurkishString(source) {
@@ -60,10 +97,7 @@
          */
         TurkishString.toLowerCase = function (str) {
             if (isString(str)) {
-                var letters = {'İ': 'i', 'I': 'ı', 'Ş': 'ş', 'Ğ': 'ğ', 'Ü': 'ü', 'Ö': 'ö', 'Ç': 'ç'};
-                var turkishString = str.replace(/(([İIŞĞÜÇÖ]))/g, function (letter) {
-                    return letters[letter];
-                });
+                var turkishString = str.replace(TURKISH_TO_LOWER_CASE_REGEX, changeLetterCase);
                 return turkishString.toLowerCase();
             }
             return '';
@@ -84,10 +118,7 @@
          */
         TurkishString.toUpperCase = function (str) {
             if (isString(str)) {
-                var letters = {'i': 'İ', 'ş': 'Ş', 'ğ': 'Ğ', 'ü': 'Ü', 'ö': 'Ö', 'ç': 'Ç', 'ı': 'I'};
-                var turkishString = str.replace(/(([iışğüçö]))/g, function (letter) {
-                    return letters[letter];
-                });
+                var turkishString = str.replace(TURKISH_TO_UPPER_CASE_REGEX, changeLetterCase);
                 return turkishString.toUpperCase();
             }
             return '';
@@ -102,6 +133,26 @@
         };
 
         /**
+         * Convert given string to ascii version.
+         * @param {string} str
+         * @returns {string}
+         */
+        TurkishString.toAsciiString = function (str) {
+            if (isString(str)) {
+                return str.replace(TURKISH_TO_ASCII_STRING_REGEX, mapTurkishLetterToAscii);
+            }
+            return '';
+        };
+
+        /**
+         * Convert source to string to ascii version.
+         * @returns {string}
+         */
+        TurkishString.prototype.toAsciiString = function () {
+            return TurkishString.toAsciiString(this.source);
+        };
+
+        /**
          * Compare the given strings
          * @param {string} source
          * @param {string} destination
@@ -111,20 +162,20 @@
             if (!isString(source) || !isString(destination)) {
                 throw new Error('Arguments must be string object.');
             }
-            var sourceIndex;
-            var destinationIndex;
+            var sourceCharCode;
+            var destinationCharCode;
             var maxLength = Math.max(source.length, destination.length);
             for (var i = 0; i < maxLength; i++) {
-                sourceIndex = getCharCode(source.charAt(i));
-                destinationIndex = getCharCode(destination.charAt(i));
-                if (sourceIndex === null) {
-                    return destinationIndex === null ? COMPARISON_RESULT.EQUAL : COMPARISON_RESULT.LESS_THAN;
+                sourceCharCode = getCharCode(source.charAt(i));
+                destinationCharCode = getCharCode(destination.charAt(i));
+                if (sourceCharCode === null) {
+                    return destinationCharCode === null ? COMPARISON_RESULT.EQUAL : COMPARISON_RESULT.LESS_THAN;
                 }
-                else if (destinationIndex === null) {
+                else if (destinationCharCode === null) {
                     return COMPARISON_RESULT.GREATER_THAN;
                 }
-                else if (sourceIndex !== destinationIndex) {
-                    return (sourceIndex - destinationIndex < 0 ? COMPARISON_RESULT.LESS_THAN : COMPARISON_RESULT.GREATER_THAN);
+                else if (sourceCharCode !== destinationCharCode) {
+                    return (sourceCharCode - destinationCharCode < 0 ? COMPARISON_RESULT.LESS_THAN : COMPARISON_RESULT.GREATER_THAN);
                 }
             }
             return COMPARISON_RESULT.EQUAL;
@@ -150,11 +201,11 @@
         };
 
         /**
-        * Is source parameter greater than or equal to destination parameter?
-        * @param {string} source
-        * @param {string} destination
-        * @returns {boolean}
-        */
+         * Is source parameter greater than or equal to destination parameter?
+         * @param {string} source
+         * @param {string} destination
+         * @returns {boolean}
+         */
         TurkishString.isGreaterThanOrEqual = function (source, destination) {
             var result = TurkishString.compare(source, destination);
             return result === COMPARISON_RESULT.EQUAL || result === COMPARISON_RESULT.GREATER_THAN;
