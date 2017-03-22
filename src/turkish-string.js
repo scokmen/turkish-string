@@ -8,36 +8,37 @@
     } else {
         root.TurkishString = factory();
     }
+
 }(this, function () {
     'use strict';
 
     /**
-     * toAsciiString conversion map for turkish special letters.
+     * Turkish special letters to ascii mapping table.
      */
-    var TURKISH_ASCII_TRANSFORMATION = {
+    var TURKISH_SPECIAL_LETTERS_TO_ASCII_MAPPING_TABLE = {
         'ç': 'c', 'ı': 'i', 'ğ': 'g', 'ş': 's', 'ö': 'o', 'ü': 'u',
         'Ç': 'C', 'İ': 'I', 'Ğ': 'G', 'Ş': 'S', 'Ö': 'O', 'Ü': 'U'
     };
 
     /**
-     * Defines virtual ascii codes for turkish-special letters.
+     * Turkish special letters virtual ascii codes.
      */
-    var TURKISH_ALPHABET_FIX = {
+    var TURKISH_LETTERS_VIRTUAL_ASCII_CODES = {
         'ç': 099.5, 'Ç': 67.5, 'ğ': 103.5, 'Ğ': 71.5, 'ı': 104.5, 'İ': 74.5,
         'ş': 115.5, 'Ş': 83.5, 'ö': 111.5, 'Ö': 79.5, 'ü': 117.5, 'Ü': 85.5
     };
 
     /**
-     * toLower and toUpper conversion map for turkish-special letters.
+     * Turkish special letters to lower and to upper mapping table.
      */
-    var TURKISH_CASE_TRANSFORMATION = {
+    var TURKISH_SPECIAL_LETTERS_TOLOWER_TOUPPER_MAPPING_TABLE = {
         'İ': 'i', 'I': 'ı', 'Ş': 'ş', 'Ğ': 'ğ', 'Ü': 'ü', 'Ö': 'ö', 'Ç': 'ç',
         'i': 'İ', 'ş': 'Ş', 'ğ': 'Ğ', 'ü': 'Ü', 'ö': 'Ö', 'ç': 'Ç', 'ı': 'I'
     };
 
     var TURKISH_TO_LOWER_CASE_REGEX = /[\u00C7\u011E\u0049\u0130\u00D6\u015E\u00DC]/g;
     var TURKISH_TO_UPPER_CASE_REGEX = /[\u00E7\u011F\u0131\u0069\u00F6\u015F\u00FC]/g;
-    var TURKISH_TO_ASCII_STRING_REGEX = /[\u00E7\u011F\u0131\u00F6\u015F\u00FC\u00C7\u011E\u0130\u00D6\u015E\u00DC]/g;
+    var TURKISH_TO_ASCII_REGEX = /[\u00E7\u011F\u0131\u00F6\u015F\u00FC\u00C7\u011E\u0130\u00D6\u015E\u00DC]/g;
 
     var COMPARISON_RESULT = {
         LESS_THAN: -1, EQUAL: 0, GREATER_THAN: 1
@@ -53,58 +54,104 @@
     }
 
     /**
-     * Get ascii code of given char.
-     * @param {string} char
+     * Get ascii code for given letter.
+     * @param {string} letter
      * @returns {number}
      */
-    function getCharCode(char) {
-        return (char === '' ? null : (TURKISH_ALPHABET_FIX[char] || char.charCodeAt(0)));
+    function getCharCode(letter) {
+        return (letter === '' ? null : (TURKISH_LETTERS_VIRTUAL_ASCII_CODES[letter] || letter.charCodeAt(0)));
     }
 
     /**
-     * Return lowercase or uppercase version of given letter
-     * by using TURKISH_CASE_TRANSFORMATION map.
+     * Transform turkish special letters to lower or to upper
+     * by using TURKISH_SPECIAL_LETTERS_TOLOWER_TOUPPER_MAPPING_TABLE
+     * mapping table.
      * @param {string} letter
      * @returns {string}
      */
-    function changeLetterCase(letter) {
-        return TURKISH_CASE_TRANSFORMATION[letter];
+    function transformTurkishSpecialLettersToLowerOrToUpper(letter) {
+        return TURKISH_SPECIAL_LETTERS_TOLOWER_TOUPPER_MAPPING_TABLE[letter];
     }
 
     /**
-     * Return ascii-standard version of given letter
-     * by using TURKISH_CASE_TRANSFORMATION map.
+     * Transform turkish special letters to ascii
+     * by using TURKISH_SPECIAL_LETTERS_TO_ASCII_MAPPING_TABLE
+     * mapping table.
      * @param {string} letter
      * @returns {string}
      */
-    function mapTurkishLetterToAscii(letter) {
-        return TURKISH_ASCII_TRANSFORMATION[letter];
+    function transformTurkishSpecialLettersToAscii(letter) {
+        return TURKISH_SPECIAL_LETTERS_TO_ASCII_MAPPING_TABLE[letter];
     }
 
     return (function () {
 
+        /**
+         * Create a TurkishString instance.
+         * @param {string, TurkishString} source
+         * @constructor
+         */
         function TurkishString(source) {
-            if (!isString(source)) {
-                throw new Error('TurkishString object must be initialized with string object.');
-            }
-            this.source = source;
+            this.source = TurkishString.resolve(source);
         }
 
         /**
-         * Convert given string to lower-case version by the turkish rules.
-         * @param {string} str
-         * @returns {string}
+         * Create a TurkishString instance.
+         * @param {string, TurkishString} source
+         * @return {TurkishString}
          */
-        TurkishString.toLowerCase = function (str) {
-            if (isString(str)) {
-                var turkishString = str.replace(TURKISH_TO_LOWER_CASE_REGEX, changeLetterCase);
-                return turkishString.toLowerCase();
-            }
-            return '';
+        TurkishString.create = function (source) {
+            return new TurkishString(source);
         };
 
         /**
-         * Convert source to lower-case version by the turkish rules.
+         * Check if parameter is a non-null TurkishString instance.
+         * @param {TurkishString} turkishString
+         * @return {boolean}
+         */
+        TurkishString.isInstance = function (turkishString) {
+            return !!turkishString && turkishString instanceof TurkishString;
+        };
+
+        /**
+         * Resolve string from parameter.
+         * If parameter is not string or TurkishString instance, throws and error.
+         * @param {string, TurkishString} source
+         * @return {string}
+         */
+        TurkishString.resolve = function (source) {
+            if (isString(source)) {
+                return source;
+            }
+            else if (TurkishString.isInstance(source)) {
+                source.toString();
+            }
+            else {
+                return '';
+            }
+        };
+
+        /**
+         * Get string object.
+         * @returns {string}
+         */
+        TurkishString.prototype.toString = function () {
+            return String(this.source).toString();
+        };
+
+        /**
+         * Turkish lowercase.
+         * @param {string, TurkishString} source
+         * @returns {string}
+         */
+        TurkishString.toLowerCase = function (source) {
+            return TurkishString.resolve(source)
+                .replace(TURKISH_TO_LOWER_CASE_REGEX, transformTurkishSpecialLettersToLowerOrToUpper)
+                .toLowerCase();
+        };
+
+        /**
+         * Turkish lowercase.
          * @returns {string}
          */
         TurkishString.prototype.toLowerCase = function () {
@@ -112,20 +159,18 @@
         };
 
         /**
-         * Convert given string to upper-case version by the turkish rules.
-         * @param {string} str
+         * Turkish uppercase.
+         * @param {string, TurkishString} source
          * @returns {string}
          */
-        TurkishString.toUpperCase = function (str) {
-            if (isString(str)) {
-                var turkishString = str.replace(TURKISH_TO_UPPER_CASE_REGEX, changeLetterCase);
-                return turkishString.toUpperCase();
-            }
-            return '';
+        TurkishString.toUpperCase = function (source) {
+            return TurkishString.resolve(source)
+                .replace(TURKISH_TO_UPPER_CASE_REGEX, transformTurkishSpecialLettersToLowerOrToUpper)
+                .toUpperCase();
         };
 
         /**
-         * Convert source to upper-case version by the turkish rules.
+         * Turkish uppercase.
          * @returns {string}
          */
         TurkishString.prototype.toUpperCase = function () {
@@ -133,49 +178,38 @@
         };
 
         /**
-         * Get plain string of TurkishString instance.
+         * Transform turkish letters to ascii letters.
+         * @param {string, TurkishString} source
          * @returns {string}
          */
-        TurkishString.prototype.toString = function() {
-            return String(this.source).toString();
+        TurkishString.toAscii = function (source) {
+            return TurkishString.resolve(source)
+                .replace(TURKISH_TO_ASCII_REGEX, transformTurkishSpecialLettersToAscii);
         };
 
         /**
-         * Convert given string to ascii version.
-         * @param {string} str
+         * Transform turkish letters to ascii letters.
          * @returns {string}
          */
-        TurkishString.toAsciiString = function (str) {
-            if (isString(str)) {
-                return str.replace(TURKISH_TO_ASCII_STRING_REGEX, mapTurkishLetterToAscii);
-            }
-            return '';
+        TurkishString.prototype.toAscii = function () {
+            return TurkishString.toAscii(this.source);
         };
 
         /**
-         * Convert source to string to ascii version.
-         * @returns {string}
-         */
-        TurkishString.prototype.toAsciiString = function () {
-            return TurkishString.toAsciiString(this.source);
-        };
-
-        /**
-         * Compare the given strings
-         * @param {string} source
-         * @param {string} destination
-         * @returns {number} standard js compare result -1, 0, 1
+         * Compare the given strings or TurkishString instances.
+         * @param {string, TurkishString} source
+         * @param {string, TurkishString} destination
+         * @returns {number} standard js comparison result: -1, 0, 1
          */
         TurkishString.compare = function (source, destination) {
-            if (!isString(source) || !isString(destination)) {
-                throw new Error('Arguments must be string object.');
-            }
             var sourceCharCode;
             var destinationCharCode;
-            var maxLength = Math.max(source.length, destination.length);
+            var sourceStr = TurkishString.resolve(source);
+            var destinationStr = TurkishString.resolve(destination);
+            var maxLength = Math.max(sourceStr.length, destinationStr.length);
             for (var i = 0; i < maxLength; i++) {
-                sourceCharCode = getCharCode(source.charAt(i));
-                destinationCharCode = getCharCode(destination.charAt(i));
+                sourceCharCode = getCharCode(sourceStr.charAt(i));
+                destinationCharCode = getCharCode(destinationStr.charAt(i));
                 if (sourceCharCode === null) {
                     return destinationCharCode === null ? COMPARISON_RESULT.EQUAL : COMPARISON_RESULT.LESS_THAN;
                 }
@@ -190,9 +224,9 @@
         };
 
         /**
-         * Is source parameter greater than destination parameter?
-         * @param {string} source
-         * @param {string} destination
+         * Is source greater than destination?
+         * @param {string, TurkishString} source
+         * @param {string, TurkishString} destination
          * @returns {boolean}
          */
         TurkishString.isGreaterThan = function (source, destination) {
@@ -200,8 +234,8 @@
         };
 
         /**
-         * Is TurkishString instance greater than target parameter?
-         * @param {string} target
+         * Is TurkishString instance greater than target?
+         * @param {string, TurkishString} target
          * @returns {boolean}
          */
         TurkishString.prototype.isGreaterThan = function (target) {
@@ -209,9 +243,9 @@
         };
 
         /**
-         * Is source parameter greater than or equal to destination parameter?
-         * @param {string} source
-         * @param {string} destination
+         * Is source greater than or equal to destination?
+         * @param {string, TurkishString} source
+         * @param {string, TurkishString} destination
          * @returns {boolean}
          */
         TurkishString.isGreaterThanOrEqual = function (source, destination) {
@@ -220,8 +254,8 @@
         };
 
         /**
-         * Is TurkishString instance greater than or equal to target parameter?
-         * @param {string} target
+         * Is TurkishString instance greater than or equal to target?
+         * @param {string, TurkishString} target
          * @returns {boolean}
          */
         TurkishString.prototype.isGreaterThanOrEqual = function (target) {
@@ -229,9 +263,9 @@
         };
 
         /**
-         * Is source parameter less than destination parameter?
-         * @param {string} source
-         * @param {string} destination
+         * Is source less than destination?
+         * @param {string, TurkishString} source
+         * @param {string, TurkishString} destination
          * @returns {boolean}
          */
         TurkishString.isLessThan = function (source, destination) {
@@ -239,8 +273,8 @@
         };
 
         /**
-         * Is TurkishString instance less than target parameter?
-         * @param {string} target
+         * Is TurkishString instance less than target?
+         * @param {string, TurkishString} target
          * @returns {boolean}
          */
         TurkishString.prototype.isLessThan = function (target) {
@@ -248,9 +282,9 @@
         };
 
         /**
-         * Is source parameter less than or equal to destination parameter?
-         * @param {string} source
-         * @param {string} destination
+         * Is source less than or equal to destination?
+         * @param {string, TurkishString} source
+         * @param {string, TurkishString} destination
          * @returns {boolean}
          */
         TurkishString.isLessThanOrEqual = function (source, destination) {
@@ -259,8 +293,8 @@
         };
 
         /**
-         * Is TurkishString instance less than or equal to target parameter?
-         * @param {string} target
+         * Is TurkishString instance less than or equal to target?
+         * @param {string, TurkishString} target
          * @returns {boolean}
          */
         TurkishString.prototype.isLessThanOrEqual = function (target) {

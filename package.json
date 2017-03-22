@@ -3,7 +3,7 @@
   "name": "turkish-string",
   "version": "0.0.1",
   "description": "turkish alphabet implementations of simple string utilities",
-  "main": "dist/turkish-sort.min.js",
+  "main": "dist/turkish-string.min.js",
   "author": "Soner Çökmen <sonercokmen@gmail.com>",
   "license": "MIT",
   "repository": {
