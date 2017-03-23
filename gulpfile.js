@@ -38,38 +38,6 @@ gulp.task('js:test', function () {
 });
 
 /**
- * @name js:coverage:calculate
- * @description Calculate code coverage.
- */
-gulp.task('js:coverage:calculate', function (done) {
-    return new karma.Server({
-        configFile: __dirname + '/karma.conf.js',
-        action: 'run',
-        singleRun: true,
-        preprocessors: {
-            'src/**/*.js': ['coverage']
-        },
-        reporters: ['progress', 'coverage'],
-        coverageReporter: {
-            type: 'html',
-            dir: 'coverage/',
-            subdir: '.'
-        }
-    }, function () {
-        done();
-    }).start();
-});
-
-/**
- * @name js:coverage
- * @description Show coverage results.
- */
-gulp.task('js:coverage', ['js:coverage:calculate'], function () {
-    return gulp.src('./coverage/index.html')
-        .pipe(open());
-});
-
-/**
  * @name js:build
  * @description Build js file.
  */

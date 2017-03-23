@@ -23,7 +23,7 @@
     "js:hint": "gulp js:hint",
     "js:test": "gulp js:test",
     "js:build": "gulp js:build",
-    "js:coverage": "gulp js:coverage"
+    "report-coverage": "codecov"
   },
   "devDependencies": {
     "faker": "^4.1.0",
@@ -37,10 +37,9 @@
     "jasmine": "^2.5.3",
     "jshint": "^2.9.2",
     "jshint-stylish": "^2.2.0",
-    "karma": "^1.5.0",
-    "karma-coverage": "^1.1.1",
-    "karma-jasmine": "^1.1.0",
-    "karma-phantomjs-launcher": "^1.0.4",
-    "phantomjs": "^2.1.7"
+    "expect.js": "^0.3.1",
+    "mocha": "^2.1.0",
+    "istanbul": "^0.3.2",
+    "codecov": "^1.0.0"
   }
 }
