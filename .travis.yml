@@ -9,5 +9,8 @@ node_js:
   - "iojs"
 install:
   - npm install
+  - npm install -g istanbul
+  - npm install -g codecov
 script:
-  - npm test
+  - istanbul cover ./node_modules/mocha/bin/_mocha --reporter lcovonly -- -R spec
+  - codecov

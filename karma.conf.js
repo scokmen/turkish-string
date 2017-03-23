@@ -10,6 +10,9 @@ module.exports = function karmaConfig(config) {
                 {type: 'lcovonly', subdir: '.'},
                 {type: 'json', subdir: '.'}
             ]
+        },
+        preprocessors:{
+            'src/**/*.js': ['coverage']
         }
     });
 };

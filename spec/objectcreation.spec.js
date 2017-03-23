@@ -10,9 +10,9 @@ describe('TurkishString.constructor tests', function () {
         
         var turkishString = new TurkishString(word);
         
-        expect(turkishString.toString()).toBe(word);
+        expect(turkishString.toString()).to.equal(word);
 
-        expect(new TurkishString(turkishString).toString()).toBe(word);
+        expect(new TurkishString(turkishString).toString()).to.equal(word);
     });
     
     it('After TurkishString.constructor initialization, toString must return empty when parameter is invalid', function () {
@@ -23,7 +23,7 @@ describe('TurkishString.constructor tests', function () {
 
             var turkishString = new TurkishString(invalidParameters[i]);
 
-            expect(turkishString.toString()).toBe('');
+            expect(turkishString.toString()).to.equal('');
         }
     });
 
@@ -33,9 +33,9 @@ describe('TurkishString.constructor tests', function () {
 
         var turkishString = new TurkishString(word);
 
-        expect(turkishString.toString()).toBe(word);
+        expect(turkishString.toString()).to.equal(word);
 
-        expect(TurkishString.create(turkishString).toString()).toBe(word);
+        expect(TurkishString.create(turkishString).toString()).to.equal(word);
     });
 
     it('After TurkishString.create initialization, toString must return empty when parameter is invalid', function () {
@@ -46,7 +46,7 @@ describe('TurkishString.constructor tests', function () {
 
             var turkishString = TurkishString.create(invalidParameters[i]);
 
-            expect(turkishString.toString()).toBe('');
+            expect(turkishString.toString()).to.equal('');
         }
     });
 });
