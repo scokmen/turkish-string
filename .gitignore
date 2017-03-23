@@ -1,7 +1,6 @@
 # Logs
 logs
 *.log
-npm-debug.log*
 
 # Runtime data
 pids
@@ -38,3 +37,7 @@ jspm_packages
 
 # Webstorm project folder
 .idea
+
+# Coverage folder
+coverage
+

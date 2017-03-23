@@ -1,5 +1,4 @@
 var faker = require('faker');
-var describe = require('gulp-jasmine');
 var TurkishString = require('../src/turkish-string.js');
 
 describe('TurkishString.constructor tests', function () {

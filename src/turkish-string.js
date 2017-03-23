@@ -120,15 +120,7 @@
          * @return {string}
          */
         TurkishString.resolve = function (source) {
-            if (isString(source)) {
-                return source;
-            }
-            else if (TurkishString.isInstance(source)) {
-                return source.toString();
-            }
-            else {
-                return '';
-            }
+            return isString(source) ? source : (TurkishString.isInstance(source) ? source.toString() : '');
         };
 
         /**
