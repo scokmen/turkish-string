@@ -23,7 +23,7 @@
     /**
      * Turkish special letters virtual ascii codes.
      */
-    var TURKISH_LETTERS_VIRTUAL_ASCII_CODES = {
+    var TURKISH_SPECIAL_LETTERS_VIRTUAL_ASCII_CODES = {
         'ç': 099.5, 'Ç': 67.5, 'ğ': 103.5, 'Ğ': 71.5, 'ı': 104.5, 'İ': 74.5,
         'ş': 115.5, 'Ş': 83.5, 'ö': 111.5, 'Ö': 79.5, 'ü': 117.5, 'Ü': 85.5
     };
@@ -59,7 +59,7 @@
      * @returns {number}
      */
     function getCharCode(letter) {
-        return (letter === '' ? null : (TURKISH_LETTERS_VIRTUAL_ASCII_CODES[letter] || letter.charCodeAt(0)));
+        return (letter === '' ? null : (TURKISH_SPECIAL_LETTERS_VIRTUAL_ASCII_CODES[letter] || letter.charCodeAt(0)));
     }
 
     /**
@@ -124,7 +124,7 @@
                 return source;
             }
             else if (TurkishString.isInstance(source)) {
-                source.toString();
+                return source.toString();
             }
             else {
                 return '';
