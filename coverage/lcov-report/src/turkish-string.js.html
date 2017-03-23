@@ -1,0 +1,939 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src\turkish-string.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../prettify.css">
+    <link rel="stylesheet" href="../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header medium">
+    <h1>Code coverage report for <span class="entity">src\turkish-string.js</span></h1>
+    <h2>
+        Statements: <span class="metric">54.43% <small>(43 / 79)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">34.38% <small>(11 / 32)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">33.33% <small>(9 / 27)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">54.43% <small>(43 / 79)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">src/</a> &#187; turkish-string.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">22</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function (root, factory) {
+    'use strict';
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof define === 'function' &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >define.amd)</span> {
+<span class="cstat-no" title="statement not covered" >        define([], factory);</span>
+    } else <span class="missing-if-branch" title="else path not taken" >E</span>if (typeof exports === 'object') {
+        module.exports = factory();
+    } else {
+<span class="cstat-no" title="statement not covered" >        root.TurkishString = factory();</span>
+    }
+&nbsp;
+}(this, function () {
+    'use strict';
+&nbsp;
+    /**
+     * Turkish special letters to ascii mapping table.
+     */
+    var TURKISH_SPECIAL_LETTERS_TO_ASCII_MAPPING_TABLE = {
+        'ç': 'c', 'ı': 'i', 'ğ': 'g', 'ş': 's', 'ö': 'o', 'ü': 'u',
+        'Ç': 'C', 'İ': 'I', 'Ğ': 'G', 'Ş': 'S', 'Ö': 'O', 'Ü': 'U'
+    };
+&nbsp;
+    /**
+     * Turkish special letters virtual ascii codes.
+     */
+    var TURKISH_SPECIAL_LETTERS_VIRTUAL_ASCII_CODES = {
+        'ç': 099.5, 'Ç': 67.5, 'ğ': 103.5, 'Ğ': 71.5, 'ı': 104.5, 'İ': 74.5,
+        'ş': 115.5, 'Ş': 83.5, 'ö': 111.5, 'Ö': 79.5, 'ü': 117.5, 'Ü': 85.5
+    };
+&nbsp;
+    /**
+     * Turkish special letters to lower and to upper mapping table.
+     */
+    var TURKISH_SPECIAL_LETTERS_TOLOWER_TOUPPER_MAPPING_TABLE = {
+        'İ': 'i', 'I': 'ı', 'Ş': 'ş', 'Ğ': 'ğ', 'Ü': 'ü', 'Ö': 'ö', 'Ç': 'ç',
+        'i': 'İ', 'ş': 'Ş', 'ğ': 'Ğ', 'ü': 'Ü', 'ö': 'Ö', 'ç': 'Ç', 'ı': 'I'
+    };
+&nbsp;
+    var TURKISH_TO_LOWER_CASE_REGEX = /[\u00C7\u011E\u0049\u0130\u00D6\u015E\u00DC]/g;
+    var TURKISH_TO_UPPER_CASE_REGEX = /[\u00E7\u011F\u0131\u0069\u00F6\u015F\u00FC]/g;
+    var TURKISH_TO_ASCII_REGEX = /[\u00E7\u011F\u0131\u00F6\u015F\u00FC\u00C7\u011E\u0130\u00D6\u015E\u00DC]/g;
+&nbsp;
+    var COMPARISON_RESULT = {
+        LESS_THAN: -1, EQUAL: 0, GREATER_THAN: 1
+    };
+&nbsp;
+    /**
+     * Is parameter a valid string?
+     * @param  {string} str
+     * @return {boolean}
+     */
+    function isString(str) {
+        return str !== null &amp;&amp; typeof str === 'string';
+    }
+&nbsp;
+    /**
+     * Get ascii code for given letter.
+     * @param {string} letter
+     * @returns {number}
+     */
+<span class="fstat-no" title="function not covered" >    function getCharCode(letter) {</span>
+<span class="cstat-no" title="statement not covered" >        return (letter === '' ? null : (TURKISH_SPECIAL_LETTERS_VIRTUAL_ASCII_CODES[letter] || letter.charCodeAt(0)));</span>
+    }
+&nbsp;
+    /**
+     * Transform turkish special letters to lower or to upper
+     * by using TURKISH_SPECIAL_LETTERS_TOLOWER_TOUPPER_MAPPING_TABLE
+     * mapping table.
+     * @param {string} letter
+     * @returns {string}
+     */
+<span class="fstat-no" title="function not covered" >    function transformTurkishSpecialLettersToLowerOrToUpper(letter) {</span>
+<span class="cstat-no" title="statement not covered" >        return TURKISH_SPECIAL_LETTERS_TOLOWER_TOUPPER_MAPPING_TABLE[letter];</span>
+    }
+&nbsp;
+    /**
+     * Transform turkish special letters to ascii
+     * by using TURKISH_SPECIAL_LETTERS_TO_ASCII_MAPPING_TABLE
+     * mapping table.
+     * @param {string} letter
+     * @returns {string}
+     */
+<span class="fstat-no" title="function not covered" >    function transformTurkishSpecialLettersToAscii(letter) {</span>
+<span class="cstat-no" title="statement not covered" >        return TURKISH_SPECIAL_LETTERS_TO_ASCII_MAPPING_TABLE[letter];</span>
+    }
+&nbsp;
+    return (function () {
+&nbsp;
+        /**
+         * Create a TurkishString instance.
+         * @param {string, TurkishString} source
+         * @constructor
+         */
+        function TurkishString(source) {
+            this.source = TurkishString.resolve(source);
+        }
+&nbsp;
+        /**
+         * Create a TurkishString instance.
+         * @param {string, TurkishString} source
+         * @return {TurkishString}
+         */
+        TurkishString.create = function (source) {
+            return new TurkishString(source);
+        };
+&nbsp;
+        /**
+         * Check if parameter is a non-null TurkishString instance.
+         * @param {TurkishString} turkishString
+         * @return {boolean}
+         */
+        TurkishString.isInstance = function (turkishString) {
+            return !!turkishString &amp;&amp; turkishString instanceof TurkishString;
+        };
+&nbsp;
+        /**
+         * Resolve string from parameter.
+         * If parameter is not string or TurkishString instance, throws and error.
+         * @param {string, TurkishString} source
+         * @return {string}
+         */
+        TurkishString.resolve = function (source) {
+            return isString(source) ? source : (TurkishString.isInstance(source) ? source.toString() : '');
+        };
+&nbsp;
+        /**
+         * Get string object.
+         * @returns {string}
+         */
+        TurkishString.prototype.toString = function () {
+            return String(this.source).toString();
+        };
+&nbsp;
+        /**
+         * Turkish lowercase.
+         * @param {string, TurkishString} source
+         * @returns {string}
+         */
+        TurkishString.toLowerCase = <span class="fstat-no" title="function not covered" >function (source) {</span>
+<span class="cstat-no" title="statement not covered" >            return TurkishString.resolve(source)</span>
+                .replace(TURKISH_TO_LOWER_CASE_REGEX, transformTurkishSpecialLettersToLowerOrToUpper)
+                .toLowerCase();
+        };
+&nbsp;
+        /**
+         * Turkish lowercase.
+         * @returns {string}
+         */
+        TurkishString.prototype.toLowerCase = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >            return TurkishString.toLowerCase(this.source);</span>
+        };
+&nbsp;
+        /**
+         * Turkish uppercase.
+         * @param {string, TurkishString} source
+         * @returns {string}
+         */
+        TurkishString.toUpperCase = <span class="fstat-no" title="function not covered" >function (source) {</span>
+<span class="cstat-no" title="statement not covered" >            return TurkishString.resolve(source)</span>
+                .replace(TURKISH_TO_UPPER_CASE_REGEX, transformTurkishSpecialLettersToLowerOrToUpper)
+                .toUpperCase();
+        };
+&nbsp;
+        /**
+         * Turkish uppercase.
+         * @returns {string}
+         */
+        TurkishString.prototype.toUpperCase = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >            return TurkishString.toUpperCase(this.source);</span>
+        };
+&nbsp;
+        /**
+         * Transform turkish letters to ascii letters.
+         * @param {string, TurkishString} source
+         * @returns {string}
+         */
+        TurkishString.toAscii = <span class="fstat-no" title="function not covered" >function (source) {</span>
+<span class="cstat-no" title="statement not covered" >            return TurkishString.resolve(source)</span>
+                .replace(TURKISH_TO_ASCII_REGEX, transformTurkishSpecialLettersToAscii);
+        };
+&nbsp;
+        /**
+         * Transform turkish letters to ascii letters.
+         * @returns {string}
+         */
+        TurkishString.prototype.toAscii = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >            return TurkishString.toAscii(this.source);</span>
+        };
+&nbsp;
+        /**
+         * Compare the given strings or TurkishString instances.
+         * @param {string, TurkishString} source
+         * @param {string, TurkishString} destination
+         * @returns {number} standard js comparison result: -1, 0, 1
+         */
+        TurkishString.compare = <span class="fstat-no" title="function not covered" >function (source, destination) {</span>
+<span class="cstat-no" title="statement not covered" >            var sourceCharCode;</span>
+<span class="cstat-no" title="statement not covered" >            var destinationCharCode;</span>
+<span class="cstat-no" title="statement not covered" >            var sourceStr = TurkishString.resolve(source);</span>
+<span class="cstat-no" title="statement not covered" >            var destinationStr = TurkishString.resolve(destination);</span>
+<span class="cstat-no" title="statement not covered" >            var maxLength = Math.max(sourceStr.length, destinationStr.length);</span>
+<span class="cstat-no" title="statement not covered" >            for (var i = 0; i &lt; maxLength; i++) {</span>
+<span class="cstat-no" title="statement not covered" >                sourceCharCode = getCharCode(sourceStr.charAt(i));</span>
+<span class="cstat-no" title="statement not covered" >                destinationCharCode = getCharCode(destinationStr.charAt(i));</span>
+<span class="cstat-no" title="statement not covered" >                if (sourceCharCode === null) {</span>
+<span class="cstat-no" title="statement not covered" >                    return destinationCharCode === null ? COMPARISON_RESULT.EQUAL : COMPARISON_RESULT.LESS_THAN;</span>
+                }
+                else <span class="cstat-no" title="statement not covered" >if (destinationCharCode === null) {</span>
+<span class="cstat-no" title="statement not covered" >                    return COMPARISON_RESULT.GREATER_THAN;</span>
+                }
+                else <span class="cstat-no" title="statement not covered" >if (sourceCharCode !== destinationCharCode) {</span>
+<span class="cstat-no" title="statement not covered" >                    return (sourceCharCode - destinationCharCode &lt; 0 ? COMPARISON_RESULT.LESS_THAN : COMPARISON_RESULT.GREATER_THAN);</span>
+                }
+            }
+<span class="cstat-no" title="statement not covered" >            return COMPARISON_RESULT.EQUAL;</span>
+        };
+&nbsp;
+        /**
+         * Is source greater than destination?
+         * @param {string, TurkishString} source
+         * @param {string, TurkishString} destination
+         * @returns {boolean}
+         */
+        TurkishString.isGreaterThan = <span class="fstat-no" title="function not covered" >function (source, destination) {</span>
+<span class="cstat-no" title="statement not covered" >            return TurkishString.compare(source, destination) === COMPARISON_RESULT.GREATER_THAN;</span>
+        };
+&nbsp;
+        /**
+         * Is TurkishString instance greater than target?
+         * @param {string, TurkishString} target
+         * @returns {boolean}
+         */
+        TurkishString.prototype.isGreaterThan = <span class="fstat-no" title="function not covered" >function (target) {</span>
+<span class="cstat-no" title="statement not covered" >            return TurkishString.isGreaterThan(this.source, target);</span>
+        };
+&nbsp;
+        /**
+         * Is source greater than or equal to destination?
+         * @param {string, TurkishString} source
+         * @param {string, TurkishString} destination
+         * @returns {boolean}
+         */
+        TurkishString.isGreaterThanOrEqual = <span class="fstat-no" title="function not covered" >function (source, destination) {</span>
+<span class="cstat-no" title="statement not covered" >            var result = TurkishString.compare(source, destination);</span>
+<span class="cstat-no" title="statement not covered" >            return result === COMPARISON_RESULT.EQUAL || result === COMPARISON_RESULT.GREATER_THAN;</span>
+        };
+&nbsp;
+        /**
+         * Is TurkishString instance greater than or equal to target?
+         * @param {string, TurkishString} target
+         * @returns {boolean}
+         */
+        TurkishString.prototype.isGreaterThanOrEqual = <span class="fstat-no" title="function not covered" >function (target) {</span>
+<span class="cstat-no" title="statement not covered" >            return TurkishString.isGreaterThanOrEqual(this.source, target);</span>
+        };
+&nbsp;
+        /**
+         * Is source less than destination?
+         * @param {string, TurkishString} source
+         * @param {string, TurkishString} destination
+         * @returns {boolean}
+         */
+        TurkishString.isLessThan = <span class="fstat-no" title="function not covered" >function (source, destination) {</span>
+<span class="cstat-no" title="statement not covered" >            return TurkishString.compare(source, destination) === COMPARISON_RESULT.LESS_THAN;</span>
+        };
+&nbsp;
+        /**
+         * Is TurkishString instance less than target?
+         * @param {string, TurkishString} target
+         * @returns {boolean}
+         */
+        TurkishString.prototype.isLessThan = <span class="fstat-no" title="function not covered" >function (target) {</span>
+<span class="cstat-no" title="statement not covered" >            return TurkishString.isLessThan(this.source, target);</span>
+        };
+&nbsp;
+        /**
+         * Is source less than or equal to destination?
+         * @param {string, TurkishString} source
+         * @param {string, TurkishString} destination
+         * @returns {boolean}
+         */
+        TurkishString.isLessThanOrEqual = <span class="fstat-no" title="function not covered" >function (source, destination) {</span>
+<span class="cstat-no" title="statement not covered" >            var result = TurkishString.compare(source, destination);</span>
+<span class="cstat-no" title="statement not covered" >            return result === COMPARISON_RESULT.LESS_THAN || result === COMPARISON_RESULT.EQUAL;</span>
+        };
+&nbsp;
+        /**
+         * Is TurkishString instance less than or equal to target?
+         * @param {string, TurkishString} target
+         * @returns {boolean}
+         */
+        TurkishString.prototype.isLessThanOrEqual = <span class="fstat-no" title="function not covered" >function (target) {</span>
+<span class="cstat-no" title="statement not covered" >            return TurkishString.isLessThanOrEqual(this.source, target);</span>
+        };
+&nbsp;
+        return TurkishString;
+    })();
+&nbsp;
+}));</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Mar 23 2017 22:50:40 GMT+0300 (Turkey Standard Time)</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
