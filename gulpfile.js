@@ -4,8 +4,6 @@
  * Imports
  */
 var gulp = require('gulp');
-var karma = require('karma');
-var open = require('gulp-open');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var jshint = require('gulp-jshint');
