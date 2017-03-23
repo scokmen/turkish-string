@@ -12,4 +12,4 @@ install:
   - npm install -g istanbul
   - npm install -g codecov
 script:
-  - istanbul cover node_modules\jasmine\bin\jasmine.js
+  - istanbul cover ./node_modules/jasmine/bin/jasmine.js

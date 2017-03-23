@@ -23,7 +23,7 @@
     "js:hint": "gulp js:hint",
     "js:test": "gulp js:test",
     "js:build": "gulp js:build",
-    "js:coverage": "istanbul cover node_modules\\jasmine\\bin\\jasmine.js"
+    "js:coverage": "istanbul cover ./node_modules/jasmine/bin/jasmine.js"
   },
   "devDependencies": {
     "codecov": "^1.0.0",
