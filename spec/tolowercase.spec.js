@@ -18,11 +18,8 @@ describe('TurkishString.toLowerCase tests', function () {
 
     it('TurkishString.toLowerCase should transform only turkish special letters', function () {
 
-        var upperCaseTurkishSpecialLetters = 'ÇĞIİÖŞÜ';
-        var lowerCaseTurkishSpecialLetters = 'çğıiöşü';
-
-        var input = upperCaseTurkishSpecialLetters + 'CGOSU' + 'ĆĠÏÕŚŮ';
-        var expectedOutput = lowerCaseTurkishSpecialLetters + 'cgosu' + 'ćġïõśů';
+        var input = 'ÇĞIİÖŞÜCGOSUĆĠÏÕŚŮ';
+        var expectedOutput = 'çğıiöşücgosućġïõśů';
 
         var turkishString = new TurkishString(input);
         

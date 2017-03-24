@@ -13,9 +13,9 @@
     'use strict';
 
     /**
-     * Turkish special letters to ascii mapping table.
+     * Turkish special letters to english letters mapping table.
      */
-    var TURKISH_SPECIAL_LETTERS_TO_ASCII_MAPPING_TABLE = {
+    var TURKISH_TO_ENGLISH_TRANSFORM_MAP = {
         'ç': 'c', 'ı': 'i', 'ğ': 'g', 'ş': 's', 'ö': 'o', 'ü': 'u',
         'Ç': 'C', 'İ': 'I', 'Ğ': 'G', 'Ş': 'S', 'Ö': 'O', 'Ü': 'U'
     };
@@ -23,7 +23,7 @@
     /**
      * Turkish special letters virtual ascii codes.
      */
-    var TURKISH_SPECIAL_LETTERS_VIRTUAL_ASCII_CODES = {
+    var VIRTUAL_ASCII_CODES = {
         'ç': 099.5, 'Ç': 67.5, 'ğ': 103.5, 'Ğ': 71.5, 'ı': 104.5, 'İ': 74.5,
         'ş': 115.5, 'Ş': 83.5, 'ö': 111.5, 'Ö': 79.5, 'ü': 117.5, 'Ü': 85.5
     };
@@ -31,14 +31,14 @@
     /**
      * Turkish special letters to lower and to upper mapping table.
      */
-    var TURKISH_SPECIAL_LETTERS_TOLOWER_TOUPPER_MAPPING_TABLE = {
+    var LETTER_TRANSFORM_MAP = {
         'İ': 'i', 'I': 'ı', 'Ş': 'ş', 'Ğ': 'ğ', 'Ü': 'ü', 'Ö': 'ö', 'Ç': 'ç',
         'i': 'İ', 'ş': 'Ş', 'ğ': 'Ğ', 'ü': 'Ü', 'ö': 'Ö', 'ç': 'Ç', 'ı': 'I'
     };
 
-    var TURKISH_TO_LOWER_CASE_REGEX = /[\u00C7\u011E\u0049\u0130\u00D6\u015E\u00DC]/g;
-    var TURKISH_TO_UPPER_CASE_REGEX = /[\u00E7\u011F\u0131\u0069\u00F6\u015F\u00FC]/g;
-    var TURKISH_TO_ASCII_REGEX = /[\u00E7\u011F\u0131\u00F6\u015F\u00FC\u00C7\u011E\u0130\u00D6\u015E\u00DC]/g;
+    var LOWER_CASE_REGEX   = /[\u00C7\u011E\u0049\u0130\u00D6\u015E\u00DC]/g;
+    var UPPER_CASE_REGEX   = /[\u00E7\u011F\u0131\u0069\u00F6\u015F\u00FC]/g;
+    var CLEAR_LETTER_REGEX = /[\u00E7\u011F\u0131\u00F6\u015F\u00FC\u00C7\u011E\u0130\u00D6\u015E\u00DC]/g;
 
     var COMPARISON_RESULT = {
         LESS_THAN: -1, EQUAL: 0, GREATER_THAN: 1
@@ -59,29 +59,29 @@
      * @returns {number}
      */
     function getCharCode(letter) {
-        return (letter === '' ? null : (TURKISH_SPECIAL_LETTERS_VIRTUAL_ASCII_CODES[letter] || letter.charCodeAt(0)));
+        return (letter === '' ? null : (VIRTUAL_ASCII_CODES[letter] || letter.charCodeAt(0)));
     }
 
     /**
      * Transform turkish special letters to lower or to upper
-     * by using TURKISH_SPECIAL_LETTERS_TOLOWER_TOUPPER_MAPPING_TABLE
+     * by using LETTER_TRANSFORM_MAP
      * mapping table.
      * @param {string} letter
      * @returns {string}
      */
-    function transformTurkishSpecialLettersToLowerOrToUpper(letter) {
-        return TURKISH_SPECIAL_LETTERS_TOLOWER_TOUPPER_MAPPING_TABLE[letter];
+    function transformLetter(letter) {
+        return LETTER_TRANSFORM_MAP[letter];
     }
 
     /**
-     * Transform turkish special letters to ascii
-     * by using TURKISH_SPECIAL_LETTERS_TO_ASCII_MAPPING_TABLE
+     * Transform turkish special letters to english
+     * letters by using TURKISH_TO_ENGLISH_TRANSFORM_MAP
      * mapping table.
      * @param {string} letter
      * @returns {string}
      */
-    function transformTurkishSpecialLettersToAscii(letter) {
-        return TURKISH_SPECIAL_LETTERS_TO_ASCII_MAPPING_TABLE[letter];
+    function clearLetter(letter) {
+        return TURKISH_TO_ENGLISH_TRANSFORM_MAP[letter];
     }
 
     return (function () {
@@ -120,6 +120,7 @@
          * @return {string}
          */
         TurkishString.resolve = function (source) {
+            //TODO: Should Throw Error...
             return isString(source) ? source : (TurkishString.isInstance(source) ? source.toString() : '');
         };
 
@@ -137,9 +138,7 @@
          * @returns {string}
          */
         TurkishString.toLowerCase = function (source) {
-            return TurkishString.resolve(source)
-                .replace(TURKISH_TO_LOWER_CASE_REGEX, transformTurkishSpecialLettersToLowerOrToUpper)
-                .toLowerCase();
+            return TurkishString.resolve(source).replace(LOWER_CASE_REGEX, transformLetter).toLowerCase();
         };
 
         /**
@@ -156,9 +155,7 @@
          * @returns {string}
          */
         TurkishString.toUpperCase = function (source) {
-            return TurkishString.resolve(source)
-                .replace(TURKISH_TO_UPPER_CASE_REGEX, transformTurkishSpecialLettersToLowerOrToUpper)
-                .toUpperCase();
+            return TurkishString.resolve(source).replace(UPPER_CASE_REGEX, transformLetter).toUpperCase();
         };
 
         /**
@@ -170,21 +167,20 @@
         };
 
         /**
-         * Transform turkish letters to ascii letters.
+         * Transform turkish special letters to english letters.
          * @param {string, TurkishString} source
          * @returns {string}
          */
-        TurkishString.toAscii = function (source) {
-            return TurkishString.resolve(source)
-                .replace(TURKISH_TO_ASCII_REGEX, transformTurkishSpecialLettersToAscii);
+        TurkishString.clear = function (source) {
+            return TurkishString.resolve(source).replace(CLEAR_LETTER_REGEX, clearLetter);
         };
 
         /**
-         * Transform turkish letters to ascii letters.
+         * Transform turkish special letters to english letters.
          * @returns {string}
          */
-        TurkishString.prototype.toAscii = function () {
-            return TurkishString.toAscii(this.source);
+        TurkishString.prototype.clear = function () {
+            return TurkishString.clear(this.source);
         };
 
         /**
@@ -194,22 +190,24 @@
          * @returns {number} standard js comparison result: -1, 0, 1
          */
         TurkishString.compare = function (source, destination) {
-            var sourceCharCode;
-            var destinationCharCode;
             var sourceStr = TurkishString.resolve(source);
             var destinationStr = TurkishString.resolve(destination);
-            var maxLength = Math.max(sourceStr.length, destinationStr.length);
-            for (var i = 0; i < maxLength; i++) {
-                sourceCharCode = getCharCode(sourceStr.charAt(i));
-                destinationCharCode = getCharCode(destinationStr.charAt(i));
-                if (sourceCharCode === null) {
-                    return destinationCharCode === null ? COMPARISON_RESULT.EQUAL : COMPARISON_RESULT.LESS_THAN;
-                }
-                else if (destinationCharCode === null) {
-                    return COMPARISON_RESULT.GREATER_THAN;
-                }
-                else if (sourceCharCode !== destinationCharCode) {
-                    return (sourceCharCode - destinationCharCode < 0 ? COMPARISON_RESULT.LESS_THAN : COMPARISON_RESULT.GREATER_THAN);
+            if(sourceStr !== destinationStr){
+                var sourceCharCode;
+                var destinationCharCode;
+                var maxLength = Math.max(sourceStr.length, destinationStr.length);
+                for (var i = 0; i < maxLength; i++) {
+                    sourceCharCode = getCharCode(sourceStr.charAt(i));
+                    destinationCharCode = getCharCode(destinationStr.charAt(i));
+                    if (sourceCharCode === null) {
+                        return destinationCharCode === null ? COMPARISON_RESULT.EQUAL : COMPARISON_RESULT.LESS_THAN;
+                    }
+                    else if (destinationCharCode === null) {
+                        return COMPARISON_RESULT.GREATER_THAN;
+                    }
+                    else if (sourceCharCode !== destinationCharCode) {
+                        return (sourceCharCode - destinationCharCode < 0 ? COMPARISON_RESULT.LESS_THAN : COMPARISON_RESULT.GREATER_THAN);
+                    }
                 }
             }
             return COMPARISON_RESULT.EQUAL;
