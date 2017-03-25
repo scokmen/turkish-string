@@ -1,4 +1,3 @@
-var expect = require('expect.js');
 var TurkishString = require('../src/turkish-string.js');
 
 describe('TurkishString comparison methods tests', function () {
@@ -6,6 +5,21 @@ describe('TurkishString comparison methods tests', function () {
     var COMPARISON_RESULT = {
         LESS_THAN: -1, EQUAL: 0, GREATER_THAN: 1
     };
+
+    it('TurkishString.compare should throw error when one of the parameters is invalid', function () {
+
+        var invalidParameters = [[], {}, 0, Infinity, NaN, false, null, undefined];
+
+        for (var i = 0; i < invalidParameters.length; i++) {
+
+            var invalidParameter = invalidParameters[i];
+
+            expect(function(){TurkishString.compare(invalidParameter, '')}).toThrowError(/resolve/);
+            expect(function(){TurkishString.compare(invalidParameter, new TurkishString(''))}).toThrowError(/resolve/);
+            expect(function(){TurkishString.compare('', invalidParameter)}).toThrowError(/resolve/);
+            expect(function(){TurkishString.compare(new TurkishString(''), invalidParameter)}).toThrowError(/resolve/);
+        }
+    });
 
     it('TurkishString.compare should return zero when two parameter is equal', function () {
 
@@ -19,10 +33,10 @@ describe('TurkishString comparison methods tests', function () {
 
             var turkishString = new TurkishString(leftValue);
 
-            expect(TurkishString.compare(leftValue, rightValue)).to.equal(COMPARISON_RESULT.EQUAL);
-            expect(TurkishString.compare(leftValue, turkishString)).to.equal(COMPARISON_RESULT.EQUAL);
-            expect(TurkishString.compare(turkishString, rightValue)).to.equal(COMPARISON_RESULT.EQUAL);
-            expect(TurkishString.compare(turkishString, turkishString)).to.equal(COMPARISON_RESULT.EQUAL);
+            expect(TurkishString.compare(leftValue, rightValue)).toBe(COMPARISON_RESULT.EQUAL);
+            expect(TurkishString.compare(leftValue, turkishString)).toBe(COMPARISON_RESULT.EQUAL);
+            expect(TurkishString.compare(turkishString, rightValue)).toBe(COMPARISON_RESULT.EQUAL);
+            expect(TurkishString.compare(turkishString, turkishString)).toBe(COMPARISON_RESULT.EQUAL);
         }
     });
 
@@ -39,10 +53,10 @@ describe('TurkishString comparison methods tests', function () {
             var sourceTurkishString = new TurkishString(leftValue);
             var destinationTurkishString = new TurkishString(rightValue);
 
-            expect(TurkishString.compare(leftValue, rightValue)).to.equal(COMPARISON_RESULT.LESS_THAN);
-            expect(TurkishString.compare(leftValue, destinationTurkishString)).to.equal(COMPARISON_RESULT.LESS_THAN);
-            expect(TurkishString.compare(sourceTurkishString, rightValue)).to.equal(COMPARISON_RESULT.LESS_THAN);
-            expect(TurkishString.compare(sourceTurkishString, destinationTurkishString)).to.equal(COMPARISON_RESULT.LESS_THAN);
+            expect(TurkishString.compare(leftValue, rightValue)).toBe(COMPARISON_RESULT.LESS_THAN);
+            expect(TurkishString.compare(leftValue, destinationTurkishString)).toBe(COMPARISON_RESULT.LESS_THAN);
+            expect(TurkishString.compare(sourceTurkishString, rightValue)).toBe(COMPARISON_RESULT.LESS_THAN);
+            expect(TurkishString.compare(sourceTurkishString, destinationTurkishString)).toBe(COMPARISON_RESULT.LESS_THAN);
         }
     });
 
@@ -60,12 +74,12 @@ describe('TurkishString comparison methods tests', function () {
             var sourceTurkishString = new TurkishString(leftValue);
             var destinationTurkishString = new TurkishString(rightValue);
 
-            expect(turkishString.isLessThan(rightValue)).to.equal(true);
-            expect(turkishString.isLessThan(destinationTurkishString)).to.equal(true);
-            expect(TurkishString.isLessThan(leftValue, rightValue)).to.equal(true);
-            expect(TurkishString.isLessThan(leftValue, destinationTurkishString)).to.equal(true);
-            expect(TurkishString.isLessThan(sourceTurkishString, rightValue)).to.equal(true);
-            expect(TurkishString.isLessThan(sourceTurkishString, destinationTurkishString)).to.equal(true);
+            expect(turkishString.isLessThan(rightValue)).toBe(true);
+            expect(turkishString.isLessThan(destinationTurkishString)).toBe(true);
+            expect(TurkishString.isLessThan(leftValue, rightValue)).toBe(true);
+            expect(TurkishString.isLessThan(leftValue, destinationTurkishString)).toBe(true);
+            expect(TurkishString.isLessThan(sourceTurkishString, rightValue)).toBe(true);
+            expect(TurkishString.isLessThan(sourceTurkishString, destinationTurkishString)).toBe(true);
         }
     });
 
@@ -83,12 +97,12 @@ describe('TurkishString comparison methods tests', function () {
             var sourceTurkishString = new TurkishString(leftValue);
             var destinationTurkishString = new TurkishString(rightValue);
 
-            expect(turkishString.isLessThanOrEqual(rightValue)).to.equal(true);
-            expect(turkishString.isLessThanOrEqual(destinationTurkishString)).to.equal(true);
-            expect(TurkishString.isLessThanOrEqual(leftValue, rightValue)).to.equal(true);
-            expect(TurkishString.isLessThanOrEqual(leftValue, destinationTurkishString)).to.equal(true);
-            expect(TurkishString.isLessThanOrEqual(sourceTurkishString, rightValue)).to.equal(true);
-            expect(TurkishString.isLessThanOrEqual(sourceTurkishString, destinationTurkishString)).to.equal(true);
+            expect(turkishString.isLessThanOrEqual(rightValue)).toBe(true);
+            expect(turkishString.isLessThanOrEqual(destinationTurkishString)).toBe(true);
+            expect(TurkishString.isLessThanOrEqual(leftValue, rightValue)).toBe(true);
+            expect(TurkishString.isLessThanOrEqual(leftValue, destinationTurkishString)).toBe(true);
+            expect(TurkishString.isLessThanOrEqual(sourceTurkishString, rightValue)).toBe(true);
+            expect(TurkishString.isLessThanOrEqual(sourceTurkishString, destinationTurkishString)).toBe(true);
         }
     });
 
@@ -105,10 +119,10 @@ describe('TurkishString comparison methods tests', function () {
             var sourceTurkishString = new TurkishString(leftValue);
             var destinationTurkishString = new TurkishString(rightValue);
 
-            expect(TurkishString.compare(leftValue, rightValue)).to.equal(COMPARISON_RESULT.GREATER_THAN);
-            expect(TurkishString.compare(leftValue, destinationTurkishString)).to.equal(COMPARISON_RESULT.GREATER_THAN);
-            expect(TurkishString.compare(sourceTurkishString, rightValue)).to.equal(COMPARISON_RESULT.GREATER_THAN);
-            expect(TurkishString.compare(sourceTurkishString, destinationTurkishString)).to.equal(COMPARISON_RESULT.GREATER_THAN);
+            expect(TurkishString.compare(leftValue, rightValue)).toBe(COMPARISON_RESULT.GREATER_THAN);
+            expect(TurkishString.compare(leftValue, destinationTurkishString)).toBe(COMPARISON_RESULT.GREATER_THAN);
+            expect(TurkishString.compare(sourceTurkishString, rightValue)).toBe(COMPARISON_RESULT.GREATER_THAN);
+            expect(TurkishString.compare(sourceTurkishString, destinationTurkishString)).toBe(COMPARISON_RESULT.GREATER_THAN);
         }
     });
 
@@ -126,12 +140,12 @@ describe('TurkishString comparison methods tests', function () {
             var sourceTurkishString = new TurkishString(leftValue);
             var destinationTurkishString = new TurkishString(rightValue);
 
-            expect(turkishString.isGreaterThan(rightValue)).to.equal(true);
-            expect(turkishString.isGreaterThan(destinationTurkishString)).to.equal(true);
-            expect(TurkishString.isGreaterThan(leftValue, rightValue)).to.equal(true);
-            expect(TurkishString.isGreaterThan(leftValue, destinationTurkishString)).to.equal(true);
-            expect(TurkishString.isGreaterThan(sourceTurkishString, rightValue)).to.equal(true);
-            expect(TurkishString.isGreaterThan(sourceTurkishString, destinationTurkishString)).to.equal(true);
+            expect(turkishString.isGreaterThan(rightValue)).toBe(true);
+            expect(turkishString.isGreaterThan(destinationTurkishString)).toBe(true);
+            expect(TurkishString.isGreaterThan(leftValue, rightValue)).toBe(true);
+            expect(TurkishString.isGreaterThan(leftValue, destinationTurkishString)).toBe(true);
+            expect(TurkishString.isGreaterThan(sourceTurkishString, rightValue)).toBe(true);
+            expect(TurkishString.isGreaterThan(sourceTurkishString, destinationTurkishString)).toBe(true);
         }
     });
 
@@ -149,12 +163,12 @@ describe('TurkishString comparison methods tests', function () {
             var sourceTurkishString = new TurkishString(leftValue);
             var destinationTurkishString = new TurkishString(rightValue);
 
-            expect(turkishString.isGreaterThanOrEqual(rightValue)).to.equal(true);
-            expect(turkishString.isGreaterThanOrEqual(destinationTurkishString)).to.equal(true);
-            expect(TurkishString.isGreaterThanOrEqual(leftValue, rightValue)).to.equal(true);
-            expect(TurkishString.isGreaterThanOrEqual(leftValue, destinationTurkishString)).to.equal(true);
-            expect(TurkishString.isGreaterThanOrEqual(sourceTurkishString, rightValue)).to.equal(true);
-            expect(TurkishString.isGreaterThanOrEqual(sourceTurkishString, destinationTurkishString)).to.equal(true);
+            expect(turkishString.isGreaterThanOrEqual(rightValue)).toBe(true);
+            expect(turkishString.isGreaterThanOrEqual(destinationTurkishString)).toBe(true);
+            expect(TurkishString.isGreaterThanOrEqual(leftValue, rightValue)).toBe(true);
+            expect(TurkishString.isGreaterThanOrEqual(leftValue, destinationTurkishString)).toBe(true);
+            expect(TurkishString.isGreaterThanOrEqual(sourceTurkishString, rightValue)).toBe(true);
+            expect(TurkishString.isGreaterThanOrEqual(sourceTurkishString, destinationTurkishString)).toBe(true);
         }
     });
 

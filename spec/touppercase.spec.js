@@ -1,18 +1,14 @@
-var expect = require('expect.js');
 var TurkishString = require('../src/turkish-string.js');
 
 describe('TurkishString.toUpperCase tests', function () {
 
-    it('TurkishString.toUpperCase should return empty string when parameter is not valid', function () {
+    it('TurkishString.toUpperCase should throw error when source is invalid', function () {
 
-        var invalidParameters = [[], {}, 0, Infinity, NaN, false, null, undefined, ''];
+        var invalidParameters = [[], {}, 0, Infinity, NaN, false, null, undefined];
 
         for (var i = 0; i < invalidParameters.length; i++) {
 
-            var turkishString = new TurkishString(invalidParameters[i]);
-
-            expect(turkishString.toUpperCase()).to.equal('');
-            expect(TurkishString.toUpperCase(invalidParameters[i])).to.equal('');
+            expect(function(){TurkishString.toUpperCase(invalidParameters[i])}).toThrowError(/resolve/);
         }
     });
 
@@ -23,7 +19,7 @@ describe('TurkishString.toUpperCase tests', function () {
 
         var turkishString = new TurkishString(input);
         
-        expect(turkishString.toUpperCase()).to.equal(expectedOutput);
-        expect(TurkishString.toUpperCase(input)).to.equal(expectedOutput);
+        expect(turkishString.toUpperCase()).toBe(expectedOutput);
+        expect(TurkishString.toUpperCase(input)).toBe(expectedOutput);
     });
 });

@@ -1,8 +1,17 @@
 var faker = require('faker');
-var expect = require('expect.js');
 var TurkishString = require('../src/turkish-string.js');
 
 describe('TurkishString.constructor tests', function () {
+
+    it('TurkishString.constructor should throw error when source is invalid', function () {
+
+        var invalidParameters = [[], {}, 0, Infinity, NaN, false, null, undefined];
+
+        for (var i = 0; i < invalidParameters.length; i++) {
+
+            expect(function(){new TurkishString(invalidParameters[i])}).toThrowError(/resolve/);
+        }
+    });
 
     it('After TurkishString.constructor initialization, toString must return the same value', function () {
 
@@ -10,20 +19,18 @@ describe('TurkishString.constructor tests', function () {
         
         var turkishString = new TurkishString(word);
         
-        expect(turkishString.toString()).to.equal(word);
+        expect(turkishString.toString()).toBe(word);
 
-        expect(new TurkishString(turkishString).toString()).to.equal(word);
+        expect(new TurkishString(turkishString).toString()).toBe(word);
     });
-    
-    it('After TurkishString.constructor initialization, toString must return empty when parameter is invalid', function () {
 
-        var invalidParameters = [[], {}, 0, Infinity, NaN, false, null, undefined, ''];
+    it('TurkishString.constructor should throw error when source is invalid', function () {
+
+        var invalidParameters = [[], {}, 0, Infinity, NaN, false, null, undefined];
 
         for (var i = 0; i < invalidParameters.length; i++) {
 
-            var turkishString = new TurkishString(invalidParameters[i]);
-
-            expect(turkishString.toString()).to.equal('');
+            expect(function(){TurkishString.create(invalidParameters[i])}).toThrowError(/resolve/);
         }
     });
 
@@ -33,20 +40,9 @@ describe('TurkishString.constructor tests', function () {
 
         var turkishString = new TurkishString(word);
 
-        expect(turkishString.toString()).to.equal(word);
+        expect(turkishString.toString()).toBe(word);
 
-        expect(TurkishString.create(turkishString).toString()).to.equal(word);
+        expect(TurkishString.create(turkishString).toString()).toBe(word);
     });
 
-    it('After TurkishString.create initialization, toString must return empty when parameter is invalid', function () {
-
-        var invalidParameters = [[], {}, 0, Infinity, NaN, false, null, undefined, ''];
-
-        for (var i = 0; i < invalidParameters.length; i++) {
-
-            var turkishString = TurkishString.create(invalidParameters[i]);
-
-            expect(turkishString.toString()).to.equal('');
-        }
-    });
 });
