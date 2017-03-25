@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "turkish-string",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "turkish alphabet implementations of simple string utilities",
   "main": "dist/turkish-string.min.js",
   "author": "Soner Çökmen <sonercokmen@gmail.com>",
