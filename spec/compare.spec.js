@@ -1,7 +1,7 @@
 var expect = require('expect.js');
 var TurkishString = require('../src/turkish-string.js');
 
-describe('TurkishString.compare tests', function () {
+describe('TurkishString comparison methods tests', function () {
 
     var COMPARISON_RESULT = {
         LESS_THAN: -1, EQUAL: 0, GREATER_THAN: 1
@@ -46,7 +46,53 @@ describe('TurkishString.compare tests', function () {
         }
     });
 
-    it('TurkishString.compare should return -1 when first parameter is less than second parameter', function () {
+    it('TurkishString.isLessThan should return true when first parameter is less than second parameter', function () {
+
+        var leftValues = ['c', 'ı', 'g', 'o', 's', 'u', 'c', 'ı', 'g', 'o', 's', 'u'];
+        var rightValues = ['ç', 'i', 'ğ', 'ö', 'ş', 'ü', 'c ', 'ı ', 'g ', 'o ', 's ', 'u '];
+
+        for (var i = 0; i < leftValues.length; i++) {
+
+            var leftValue = leftValues[i];
+            var rightValue = rightValues[i];
+
+            var turkishString = new TurkishString(leftValue);
+            var sourceTurkishString = new TurkishString(leftValue);
+            var destinationTurkishString = new TurkishString(rightValue);
+
+            expect(turkishString.isLessThan(rightValue)).to.equal(true);
+            expect(turkishString.isLessThan(destinationTurkishString)).to.equal(true);
+            expect(TurkishString.isLessThan(leftValue, rightValue)).to.equal(true);
+            expect(TurkishString.isLessThan(leftValue, destinationTurkishString)).to.equal(true);
+            expect(TurkishString.isLessThan(sourceTurkishString, rightValue)).to.equal(true);
+            expect(TurkishString.isLessThan(sourceTurkishString, destinationTurkishString)).to.equal(true);
+        }
+    });
+
+    it('TurkishString.isLessThanOrEqual should return true when first parameter is less than or equal to second parameter', function () {
+
+        var leftValues = ['c', 'ı', 'g', 'o', 's', 'u', 'c', 'ı', 'g', 'o', 's', 'u'];
+        var rightValues = ['ç', 'i', 'ğ', 'ö', 'ş', 'ü', 'c', 'ı', 'g', 'o', 's', 'u'];
+
+        for (var i = 0; i < leftValues.length; i++) {
+
+            var leftValue = leftValues[i];
+            var rightValue = rightValues[i];
+
+            var turkishString = new TurkishString(leftValue);
+            var sourceTurkishString = new TurkishString(leftValue);
+            var destinationTurkishString = new TurkishString(rightValue);
+
+            expect(turkishString.isLessThanOrEqual(rightValue)).to.equal(true);
+            expect(turkishString.isLessThanOrEqual(destinationTurkishString)).to.equal(true);
+            expect(TurkishString.isLessThanOrEqual(leftValue, rightValue)).to.equal(true);
+            expect(TurkishString.isLessThanOrEqual(leftValue, destinationTurkishString)).to.equal(true);
+            expect(TurkishString.isLessThanOrEqual(sourceTurkishString, rightValue)).to.equal(true);
+            expect(TurkishString.isLessThanOrEqual(sourceTurkishString, destinationTurkishString)).to.equal(true);
+        }
+    });
+
+    it('TurkishString.compare should return +1 when first parameter is less than second parameter', function () {
 
         var leftValues = ['ç', 'i', 'ğ', 'ö', 'ş', 'ü ', 'ç ', 'i ', 'ğ ', 'ö ', 'ş ', 'ü '];
         var rightValues = ['c', 'ı', 'g', 'o', 's', 'u', 'ç', 'i', 'ğ', 'ö', 'ş', 'ü'];
@@ -65,4 +111,52 @@ describe('TurkishString.compare tests', function () {
             expect(TurkishString.compare(sourceTurkishString, destinationTurkishString)).to.equal(COMPARISON_RESULT.GREATER_THAN);
         }
     });
+
+    it('TurkishString.isGreaterThan should return +1 when first parameter is less than second parameter', function () {
+
+        var leftValues = ['ç', 'i', 'ğ', 'ö', 'ş', 'ü ', 'ç ', 'i ', 'ğ ', 'ö ', 'ş ', 'ü '];
+        var rightValues = ['c', 'ı', 'g', 'o', 's', 'u', 'ç', 'i', 'ğ', 'ö', 'ş', 'ü'];
+
+        for (var i = 0; i < leftValues.length; i++) {
+
+            var leftValue = leftValues[i];
+            var rightValue = rightValues[i];
+
+            var turkishString = new TurkishString(leftValue);
+            var sourceTurkishString = new TurkishString(leftValue);
+            var destinationTurkishString = new TurkishString(rightValue);
+
+            expect(turkishString.isGreaterThan(rightValue)).to.equal(true);
+            expect(turkishString.isGreaterThan(destinationTurkishString)).to.equal(true);
+            expect(TurkishString.isGreaterThan(leftValue, rightValue)).to.equal(true);
+            expect(TurkishString.isGreaterThan(leftValue, destinationTurkishString)).to.equal(true);
+            expect(TurkishString.isGreaterThan(sourceTurkishString, rightValue)).to.equal(true);
+            expect(TurkishString.isGreaterThan(sourceTurkishString, destinationTurkishString)).to.equal(true);
+        }
+    });
+
+    it('TurkishString.isGreaterThanOrEqual should return +1 when first parameter is less than oe equal to second parameter', function () {
+
+        var leftValues = ['ç', 'i', 'ğ', 'ö', 'ş', 'ü ', 'ç ', 'i', 'ğ', 'ö', 'ş', 'ü'];
+        var rightValues = ['c', 'ı', 'g', 'o', 's', 'u', 'ç', 'i', 'ğ', 'ö', 'ş', 'ü'];
+
+        for (var i = 0; i < leftValues.length; i++) {
+
+            var leftValue = leftValues[i];
+            var rightValue = rightValues[i];
+
+            var turkishString = new TurkishString(leftValue);
+            var sourceTurkishString = new TurkishString(leftValue);
+            var destinationTurkishString = new TurkishString(rightValue);
+
+            expect(turkishString.isGreaterThanOrEqual(rightValue)).to.equal(true);
+            expect(turkishString.isGreaterThanOrEqual(destinationTurkishString)).to.equal(true);
+            expect(TurkishString.isGreaterThanOrEqual(leftValue, rightValue)).to.equal(true);
+            expect(TurkishString.isGreaterThanOrEqual(leftValue, destinationTurkishString)).to.equal(true);
+            expect(TurkishString.isGreaterThanOrEqual(sourceTurkishString, rightValue)).to.equal(true);
+            expect(TurkishString.isGreaterThanOrEqual(sourceTurkishString, destinationTurkishString)).to.equal(true);
+        }
+    });
+
 });
+
