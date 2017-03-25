@@ -90,6 +90,7 @@
          * Create a TurkishString instance.
          * @param {string, TurkishString} source
          * @constructor
+         * @throws {Error}
          */
         function TurkishString(source) {
             this.source = TurkishString.resolve(source);
@@ -99,6 +100,7 @@
          * Create a TurkishString instance.
          * @param {string, TurkishString} source
          * @return {TurkishString}
+         * @throws {Error}
          */
         TurkishString.create = function (source) {
             return new TurkishString(source);
@@ -118,6 +120,7 @@
          * If parameter is not string or TurkishString instance, throws and error.
          * @param {string, TurkishString} source
          * @return {string}
+         * @throws {Error}
          */
         TurkishString.resolve = function (source) {
             if(isString(source)){
@@ -132,6 +135,15 @@
         };
 
         /**
+         * Clone the instance.
+         * @return {TurkishString}
+         * @throws {Error}
+         */
+        TurkishString.prototype.clone = function() {
+            return new TurkishString(this.source);
+        };
+
+        /**
          * Get string object.
          * @returns {string}
          */
@@ -143,6 +155,7 @@
          * Turkish lowercase.
          * @param {string, TurkishString} source
          * @returns {string}
+         * @throws {Error}
          */
         TurkishString.toLowerCase = function (source) {
             return TurkishString.resolve(source).replace(LOWER_CASE_REGEX, transformLetter).toLowerCase();
@@ -160,6 +173,7 @@
          * Turkish uppercase.
          * @param {string, TurkishString} source
          * @returns {string}
+         * @throws {Error}
          */
         TurkishString.toUpperCase = function (source) {
             return TurkishString.resolve(source).replace(UPPER_CASE_REGEX, transformLetter).toUpperCase();
@@ -177,6 +191,7 @@
          * Transform turkish special letters to english letters.
          * @param {string, TurkishString} source
          * @returns {string}
+         * @throws {Error}
          */
         TurkishString.clear = function (source) {
             return TurkishString.resolve(source).replace(CLEAR_LETTER_REGEX, clearLetter);
@@ -195,6 +210,7 @@
          * @param {string, TurkishString} source
          * @param {string, TurkishString} destination
          * @returns {number} standard js comparison result: -1, 0, 1
+         * @throws {Error}
          */
         TurkishString.compare = function (source, destination) {
             var sourceStr = TurkishString.resolve(source);
@@ -225,6 +241,7 @@
          * @param {string, TurkishString} source
          * @param {string, TurkishString} destination
          * @returns {boolean}
+         * @throws {Error}
          */
         TurkishString.isGreaterThan = function (source, destination) {
             return TurkishString.compare(source, destination) === COMPARISON_RESULT.GREATER_THAN;
@@ -234,6 +251,7 @@
          * Is TurkishString instance greater than target?
          * @param {string, TurkishString} target
          * @returns {boolean}
+         * @throws {Error}
          */
         TurkishString.prototype.isGreaterThan = function (target) {
             return TurkishString.isGreaterThan(this.source, target);
@@ -244,6 +262,7 @@
          * @param {string, TurkishString} source
          * @param {string, TurkishString} destination
          * @returns {boolean}
+         * @throws {Error}
          */
         TurkishString.isGreaterThanOrEqual = function (source, destination) {
             var result = TurkishString.compare(source, destination);
@@ -254,6 +273,7 @@
          * Is TurkishString instance greater than or equal to target?
          * @param {string, TurkishString} target
          * @returns {boolean}
+         * @throws {Error}
          */
         TurkishString.prototype.isGreaterThanOrEqual = function (target) {
             return TurkishString.isGreaterThanOrEqual(this.source, target);
@@ -264,6 +284,7 @@
          * @param {string, TurkishString} source
          * @param {string, TurkishString} destination
          * @returns {boolean}
+         * @throws {Error}
          */
         TurkishString.isLessThan = function (source, destination) {
             return TurkishString.compare(source, destination) === COMPARISON_RESULT.LESS_THAN;
@@ -273,6 +294,7 @@
          * Is TurkishString instance less than target?
          * @param {string, TurkishString} target
          * @returns {boolean}
+         * @throws {Error}
          */
         TurkishString.prototype.isLessThan = function (target) {
             return TurkishString.isLessThan(this.source, target);
@@ -283,6 +305,7 @@
          * @param {string, TurkishString} source
          * @param {string, TurkishString} destination
          * @returns {boolean}
+         * @throws {Error}
          */
         TurkishString.isLessThanOrEqual = function (source, destination) {
             var result = TurkishString.compare(source, destination);
@@ -293,6 +316,7 @@
          * Is TurkishString instance less than or equal to target?
          * @param {string, TurkishString} target
          * @returns {boolean}
+         * @throws {Error}
          */
         TurkishString.prototype.isLessThanOrEqual = function (target) {
             return TurkishString.isLessThanOrEqual(this.source, target);

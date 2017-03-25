@@ -45,4 +45,14 @@ describe('TurkishString.constructor tests', function () {
         expect(TurkishString.create(turkishString).toString()).toBe(word);
     });
 
+    it('TurkishString.clone should clone instance', function () {
+
+        var word = faker.random.word();
+
+        var turkishString = new TurkishString(word);
+        var turkishCloneString = turkishString.clone();
+
+        expect(turkishString.toString()).toBe(turkishCloneString.toString());
+    });
+
 });
