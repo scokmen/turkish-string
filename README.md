@@ -6,6 +6,20 @@ turkish alphabet implementations of simple string utilities.
 
 [![NPM](https://nodei.co/npm/turkish-string.png)](https://nodei.co/npm/turkish-string/)
 
+# Installation
+
+**Bower:**
+
+```javascript
+bower install turkish-string
+```
+
+**Npm:**
+
+```javascript
+npm install turkish-string
+```
+
 # Documentation
 
 ```javascript
@@ -56,4 +70,4 @@ var result2  = letters2.sort(TurkishString.compare);
 
 # License
 
-Copyright (c) 2017 Soner Çökmen, Licensed under the MIT license.
+Copyright (c) 2016 Soner Çökmen, Licensed under the MIT license.
