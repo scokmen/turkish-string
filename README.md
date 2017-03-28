@@ -1,6 +1,9 @@
 # turkish-string
 turkish alphabet implementations of simple string utilities.
 
+[![GitHub version](https://badge.fury.io/gh/scokmen%2Fturkish-string.svg)](https://badge.fury.io/gh/scokmen%2Fturkish-string)
+[![npm version](https://badge.fury.io/js/turkish-string.svg)](https://badge.fury.io/js/turkish-string)
+[![Bower version](https://badge.fury.io/bo/turkish-string.svg)](https://badge.fury.io/bo/turkish-string)
 [![Build Status](https://travis-ci.org/scokmen/turkish-string.svg?branch=master)](https://travis-ci.org/scokmen/turkish-string)
 [![codecov](https://codecov.io/gh/scokmen/turkish-string/branch/master/graph/badge.svg)](https://codecov.io/gh/scokmen/turkish-string)
 
@@ -11,13 +14,13 @@ turkish alphabet implementations of simple string utilities.
 **Bower:**
 
 ```javascript
-bower install turkish-string
+$ bower install turkish-string
 ```
 
 **Npm:**
 
 ```javascript
-npm install turkish-string
+$ npm install turkish-string
 ```
 
 # Documentation
