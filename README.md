@@ -4,6 +4,8 @@ turkish alphabet implementations of simple string utilities.
 [![Build Status](https://travis-ci.org/scokmen/turkish-string.svg?branch=master)](https://travis-ci.org/scokmen/turkish-string)
 [![codecov](https://codecov.io/gh/scokmen/turkish-string/branch/master/graph/badge.svg)](https://codecov.io/gh/scokmen/turkish-string)
 
+[![NPM](https://nodei.co/npm/turkish-string.png)](https://nodei.co/npm/turkish-string/)
+
 # Documentation
 
 ```javascript
@@ -54,4 +56,4 @@ var result2  = letters2.sort(TurkishString.compare);
 
 # License
 
-Copyright (c) 2016 Soner Çökmen, Licensed under the MIT license.
+Copyright (c) 2017 Soner Çökmen, Licensed under the MIT license.
