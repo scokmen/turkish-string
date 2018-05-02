@@ -8,12 +8,9 @@ node_js:
   - "0.10"
   - "iojs"
 install:
-  - npm install
-  - npm install -g istanbul
-  - npm install -g codecov
+  - yarn
 script:
-  - npm run js:hint
-  - npm run js:test
-  - istanbul cover ./node_modules/jasmine/bin/jasmine.js
+  - yarn test
+  - yarn cov
 after_success:
   - bash <(curl -s https://codecov.io/bash)

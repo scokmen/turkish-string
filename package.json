@@ -1,41 +1,28 @@
 {
-  "private": false,
   "name": "turkish-string",
-  "version": "0.0.3",
-  "description": "turkish alphabet implementations of simple string utilities",
-  "main": "dist/turkish-string.min.js",
+  "version": "1.0.0",
+  "description": "isomorphic turkish string utilities javascript",
+  "main": "index.js",
   "author": "Soner Çökmen <sonercokmen@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/scokmen/turkish-string.git"
   },
-  "bugs": {
-    "url": "https://github.com/scokmen/turkish-string/issues"
-  },
-  "homepage": "https://github.com/scokmen/turkish-string#readme",
   "keywords": [
-    "string",
     "turkish",
-    "turkish-language"
+    "string",
+    "isomorphic"
   ],
   "scripts": {
-    "js:hint": "gulp js:hint",
-    "js:test": "gulp js:test",
-    "js:build": "gulp js:build",
-    "js:coverage": "istanbul cover ./node_modules/jasmine/bin/jasmine.js"
+    "test": "./node_modules/.bin/mocha ./test/**/*.spec.js --exit",
+    "cov": "./node_modules/.bin/nyc yarn test"
   },
   "devDependencies": {
-    "codecov": "^1.0.0",
+    "chai": "^4.1.2",
+    "codecov": "^3.0.1",
     "faker": "^4.1.0",
-    "gulp": "^3.9.1",
-    "gulp-jasmine": "^2.3.0",
-    "gulp-jshint": "^2.0.1",
-    "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^1.5.3",
-    "istanbul": "^0.3.2",
-    "jasmine": "^2.5.3",
-    "jshint": "^2.9.2",
-    "jshint-stylish": "^2.2.0"
+    "mocha": "^5.1.1",
+    "nyc": "^11.7.1"
   }
 }
