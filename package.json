@@ -16,7 +16,8 @@
   ],
   "scripts": {
     "test": "./node_modules/.bin/mocha ./test/**/*.spec.js --exit",
-    "cov": "./node_modules/.bin/nyc yarn test"
+    "cov": "./node_modules/.bin/nyc yarn test",
+    "report": "./node_modules/.bin/nyc report --reporter=text-lcov > coverage.lcov && ./node_modules/.bin/codecov"
   },
   "devDependencies": {
     "chai": "^4.1.2",

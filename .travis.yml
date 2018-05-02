@@ -7,5 +7,4 @@ install:
 script:
   - yarn test
   - yarn cov
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - yarn report
