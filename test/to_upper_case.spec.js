@@ -2,19 +2,19 @@ const { describe, it } = require("mocha");
 const { expect } = require("chai");
 const TurkishString = require("./../index");
 
-describe("TurkishString.toUpperCase tests", function () {
+describe("to upper case utility specs", function () {
 
-    it("TurkishString.toUpperCase should throw error when source is invalid", function () {
+    it("should throws type error when argument of toUpperCase is not a string", function () {
 
         const invalidParameters = [[], {}, 0, Infinity, NaN, false, null, undefined];
 
         for (let i = 0; i < invalidParameters.length; i++) {
 
-            expect(function(){TurkishString.toUpperCase(invalidParameters[i])}).to.throws(/resolve/);
+            expect(function(){TurkishString.toUpperCase(invalidParameters[i])}).to.throws(TypeError);
         }
     });
 
-    it("TurkishString.toUpperCase should transform only turkish special letters", function () {
+    it("should converts only turkish characters", function () {
 
         const input = "çğıiöşücgosućġïõśů";
         const expectedOutput = "ÇĞIİÖŞÜCGOSUĆĠÏÕŚŮ";

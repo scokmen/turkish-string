@@ -2,11 +2,11 @@ const { describe, it } = require("mocha");
 const { expect } = require("chai");
 const TurkishString = require("./../index");
 
-describe("TurkishString comparison methods tests", function () {
+describe("comparison utility specs", function () {
 
     const COMPARISON_RESULT = { LESS_THAN: -1, EQUAL: 0, GREATER_THAN: 1 };
 
-    it("TurkishString.compare should throw error when one of the parameters is invalid", function () {
+    it("should throws type error when one of the arguments of the compare method is not a string", function () {
 
         const invalidParameters = [[], {}, 0, Infinity, NaN, false, null, undefined];
 
@@ -14,14 +14,14 @@ describe("TurkishString comparison methods tests", function () {
 
             const invalidParameter = invalidParameters[i];
 
-            expect(function(){TurkishString.compare(invalidParameter, "")}).to.throw(/resolve/);
-            expect(function(){TurkishString.compare(invalidParameter, new TurkishString(""))}).to.throw(/resolve/);
-            expect(function(){TurkishString.compare("", invalidParameter)}).to.throw(/resolve/);
-            expect(function(){TurkishString.compare(new TurkishString(""), invalidParameter)}).to.throw(/resolve/);
+            expect(function() { TurkishString.compare(invalidParameter, ""); }).to.throw(TypeError);
+            expect(function() { TurkishString.compare(invalidParameter, new TurkishString("")); }).to.throw(TypeError);
+            expect(function() { TurkishString.compare("", invalidParameter); }).to.throw(TypeError);
+            expect(function() { TurkishString.compare(new TurkishString(""), invalidParameter); }).to.throw(TypeError);
         }
     });
 
-    it("TurkishString.compare should return zero when two parameter is equal", function () {
+    it("should returns zero when arguments of compare method are identical", function () {
 
         const leftValues = ["", "çğıiöşüÇĞIİÖŞÜćġïõśůĆĠÏÕŚŮ", "cgiiosuCGIIOSUćġïõśůĆĠÏÕŚŮ"];
         const rightValues = ["", "çğıiöşüÇĞIİÖŞÜćġïõśůĆĠÏÕŚŮ", "cgiiosuCGIIOSUćġïõśůĆĠÏÕŚŮ"];
@@ -39,7 +39,7 @@ describe("TurkishString comparison methods tests", function () {
         }
     });
 
-    it("TurkishString.compare should return -1 when first parameter is less than second parameter", function () {
+    it("should returns -1 when first parameter of the compare method is less than the other", function () {
 
         const leftValues = ["c", "ı", "g", "o", "s", "u", "c", "ı", "g", "o", "s", "u"];
         const rightValues = ["ç", "i", "ğ", "ö", "ş", "ü", "c ", "ı ", "g ", "o ", "s ", "u "];
@@ -58,7 +58,7 @@ describe("TurkishString comparison methods tests", function () {
         }
     });
 
-    it("TurkishString.isLessThan should return true when first parameter is less than second parameter", function () {
+    it("should returns true when first parameter of the isLessThan method is less than other", function () {
 
         const leftValues = ["c", "ı", "g", "o", "s", "u", "c", "ı", "g", "o", "s", "u"];
         const rightValues = ["ç", "i", "ğ", "ö", "ş", "ü", "c ", "ı ", "g ", "o ", "s ", "u "];
@@ -80,7 +80,7 @@ describe("TurkishString comparison methods tests", function () {
         }
     });
 
-    it("TurkishString.isLessThanOrEqual should return true when first parameter is less than or equal to second parameter", function () {
+    it("should returns true when first parameter of the isLessThanOrEqual method is less than or equal to other", function () {
 
         const leftValues = ["c", "ı", "g", "o", "s", "u", "c", "ı", "g", "o", "s", "u"];
         const rightValues = ["ç", "i", "ğ", "ö", "ş", "ü", "c", "ı", "g", "o", "s", "u"];
@@ -102,7 +102,7 @@ describe("TurkishString comparison methods tests", function () {
         }
     });
 
-    it("TurkishString.compare should return +1 when first parameter is less than second parameter", function () {
+    it("should returns 1 when first parameter of the compare method is greater than second parameter", function () {
 
         const leftValues = ["ç", "i", "ğ", "ö", "ş", "ü ", "ç ", "i ", "ğ ", "ö ", "ş ", "ü "];
         const rightValues = ["c", "ı", "g", "o", "s", "u", "ç", "i", "ğ", "ö", "ş", "ü"];
@@ -121,7 +121,7 @@ describe("TurkishString comparison methods tests", function () {
         }
     });
 
-    it("TurkishString.isGreaterThan should return +1 when first parameter is less than second parameter", function () {
+    it("should returns 1 when first parameter of the isGreaterThan method is greater than other", function () {
 
         const leftValues = ["ç", "i", "ğ", "ö", "ş", "ü ", "ç ", "i ", "ğ ", "ö ", "ş ", "ü "];
         const rightValues = ["c", "ı", "g", "o", "s", "u", "ç", "i", "ğ", "ö", "ş", "ü"];
@@ -143,7 +143,7 @@ describe("TurkishString comparison methods tests", function () {
         }
     });
 
-    it("TurkishString.isGreaterThanOrEqual should return +1 when first parameter is less than oe equal to second parameter", function () {
+    it("should returns 1 when first parameter of the isGreaterThanOrEqual method is greater than or equal to other", function () {
 
         const leftValues = ["ç", "i", "ğ", "ö", "ş", "ü ", "ç ", "i", "ğ", "ö", "ş", "ü"];
         const rightValues = ["c", "ı", "g", "o", "s", "u", "ç", "i", "ğ", "ö", "ş", "ü"];

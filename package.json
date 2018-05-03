@@ -1,7 +1,7 @@
 {
   "name": "turkish-string",
-  "version": "1.0.0",
-  "description": "isomorphic turkish string utilities javascript",
+  "version": "1.0.1",
+  "description": "isomorphic turkish string utilities for javascript",
   "main": "index.js",
   "author": "Soner Çökmen <sonercokmen@gmail.com>",
   "license": "MIT",

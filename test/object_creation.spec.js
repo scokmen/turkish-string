@@ -3,49 +3,29 @@ const { describe, it } = require("mocha");
 const { expect } = require("chai");
 const TurkishString = require("./../index");
 
-describe("TurkishString.constructor tests", function () {
+describe("constructor and creation utility specs", function () {
 
-    it("TurkishString.constructor should throw error when source is invalid", function () {
-
-        const invalidParameters = [[], {}, 0, Infinity, NaN, false, null, undefined];
-
-        for (let i = 0; i < invalidParameters.length; i++) {
-
-            expect(function(){new TurkishString(invalidParameters[i])}).to.throws(/resolve/);
-        }
-    });
-
-    it("After TurkishString.constructor initialization, toString must return the same value", function () {
-
-        const word = faker.random.word();
-        const turkishString = new TurkishString(word);
-
-        expect(turkishString.toString()).to.equal(word);
-
-        expect(new TurkishString(turkishString).toString()).to.equal(word);
-    });
-
-    it("TurkishString.constructor should throw error when source is invalid", function () {
+    it("should throws type error when argument of constructor is not a string", function () {
 
         const invalidParameters = [[], {}, 0, Infinity, NaN, false, null, undefined];
 
         for (let i = 0; i < invalidParameters.length; i++) {
 
-            expect(function(){TurkishString.create(invalidParameters[i])}).to.throws(/resolve/);
+            expect(function(){new TurkishString(invalidParameters[i])}).to.throws(TypeError);
         }
     });
 
-    it("After TurkishString.create initialization, toString must return the same value", function () {
+    it("should throws type error when argument of create is not a string", function () {
 
-        const word = faker.random.word();
-        const turkishString = new TurkishString(word);
+        const invalidParameters = [[], {}, 0, Infinity, NaN, false, null, undefined];
 
-        expect(turkishString.toString()).to.equal(word);
+        for (let i = 0; i < invalidParameters.length; i++) {
 
-        expect(TurkishString.create(turkishString).toString()).to.equal(word);
+            expect(function(){TurkishString.create(invalidParameters[i])}).to.throws(TypeError);
+        }
     });
 
-    it("TurkishString.clone should clone instance", function () {
+    it("should clones underlying string", function () {
 
         const word = faker.random.word();
         const turkishString = new TurkishString(word);

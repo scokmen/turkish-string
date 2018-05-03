@@ -1,6 +1,6 @@
 # turkish-string
 
-isomorphic turkish string utilities javascript
+isomorphic turkish string utilities for javascript
 
 [![GitHub version](https://badge.fury.io/gh/scokmen%2Fturkish-string.svg)](https://badge.fury.io/gh/scokmen%2Fturkish-string)
 [![npm version](https://badge.fury.io/js/turkish-string.svg)](https://badge.fury.io/js/turkish-string)
@@ -9,51 +9,73 @@ isomorphic turkish string utilities javascript
 
 [![NPM](https://nodei.co/npm/turkish-string.png)](https://nodei.co/npm/turkish-string/)
 
-## Installation  
-```bash
-$ yarn add turkish-string  
-```
+## Installation
 
+```bash
+$ yarn add turkish-string
+```
+ 
 ## Documentation
 
-**create()**
+**initialize via constructor, create or clone methods**
+
 ```javascript
 const TurkishString = require("turkish-string");
-const turkishString1 = new TurkishString('string');
-const turkishString2 = TurkishString.create('string');
+
+const str1 = new TurkishString("string");
+const str2 = TurkishString.create("string");
+const str3 = new TurkishString(str1);
+const str4 = TurkishString.create(str2);
+const str5 = str4.clone();
 ```
 
-**toLowerCase()**
+**Lowercase transform**
+
 ```javascript
 const TurkishString = require("turkish-string");
-const turkishString = new TurkishString('Ç-Ğ-I-İ-Ö-Ş-Ü');
-const result1 = turkishString.toLowerCase();                //"ç-ğ-ı-i-ö-ş-ü"
-const result2 = TurkishString.toLowerCase('Ç-Ğ-I-İ-Ö-Ş-Ü'); //"ç-ğ-ı-i-ö-ş-ü"
-const result3 = TurkishString.toLowerCase(turkishString);   //"ç-ğ-ı-i-ö-ş-ü"
-```
-**toUpperCase()**
-```javascript
-const TurkishString = require("turkish-string");
-const turkishString = new TurkishString('ç-ğ-ı-i-ö-ş-ü');
-const result1 = turkishString.toUpperCase();                //"Ç-Ğ-I-İ-Ö-Ş-Ü"
-const result2 = TurkishString.toUpperCase('ç-ğ-ı-i-ö-ş-ü'); //"Ç-Ğ-I-İ-Ö-Ş-Ü"
-const result3 = TurkishString.toUpperCase(turkishString);   //"Ç-Ğ-I-İ-Ö-Ş-Ü"
-```
-**clear()**
-```javascript
-const TurkishString = require("turkish-string");
-const turkishString = new TurkishString('Ç-Ğ-I-İ-Ö-Ş-Ü');
-const result1 = turkishString.clear();                //"C-G-I-I-O-S-U"
-const result2 = TurkishString.clear('Ç-Ğ-I-İ-Ö-Ş-Ü'); //"C-G-I-I-O-S-U"
-const result3 = TurkishString.clear(turkishString);   //"C-G-I-I-O-S-U"
+
+const instance = new TurkishString("Ç-Ğ-I-İ-Ö-Ş-Ü");
+const str1 = instance.toLowerCase();                     //ç-ğ-ı-i-ö-ş-ü
+const str2 = TurkishString.toLowerCase("Ç-Ğ-I-İ-Ö-Ş-Ü"); //ç-ğ-ı-i-ö-ş-ü
+const str3 = TurkishString.toLowerCase(instance);        //ç-ğ-ı-i-ö-ş-ü
 ```
 
-**sorting**
-```javascript
-const letters = ['ğ', 'g', 'f', 'e', 'd', 'ç', 'c', 'b', 'a'];
+**Uppercase transform**
 
-const englishSorted = letters1.sort();
+```javascript
+const TurkishString = require("turkish-string");
+
+const instance = new TurkishString("ç-ğ-ı-i-ö-ş-ü");
+const str1 = instance.toUpperCase();                     //Ç-Ğ-I-İ-Ö-Ş-Ü
+const str2 = TurkishString.toUpperCase("Ç-Ğ-I-İ-Ö-Ş-Ü"); //Ç-Ğ-I-İ-Ö-Ş-Ü
+const str3 = TurkishString.toUpperCase(instance);        //Ç-Ğ-I-İ-Ö-Ş-Ü
+```
+**Clear turkish characters** 
+```javascript
+const TurkishString = require("turkish-string");
+
+const instance = new TurkishString("Ç-Ğ-I-İ-Ö-Ş-Ü");
+const str1 = turkishString.clear();                //C-G-I-I-O-S-U
+const str2 = TurkishString.clear("Ç-Ğ-I-İ-Ö-Ş-Ü"); //C-G-I-I-O-S-U
+const str3 = TurkishString.clear(instance);        //C-G-I-I-O-S-U
+```
+
+**Sorting support**
+
+For sorting ```TurkishString.compare``` method can be use as compare function
+
+```javascript
+const letters = ["ğ", "g'", "f", "e", "d", "ç", "c", "b", "a"];
+
+const englishSorted = letters.sort();
 //["a", "b", "c", "d", "e", "f", "g", "ç", "ğ"]
-const turkishSorted = letters2.sort(TurkishString.compare);
+
+const turkishSorted = letters.sort(TurkishString.compare);
 //["a", "b", "c", "ç", "d", "e", "f", "g", "ğ"]
 ```
+
+**Other instance and static methods**
+- isLessThan
+- isLessThanOrEqual
+- isGreaterThan
+- isGreaterThanOrEqual
