@@ -55,7 +55,7 @@ const str3 = TurkishString.toUpperCase(instance);        //Ç-Ğ-I-İ-Ö-Ş-Ü
 const TurkishString = require("turkish-string");
 
 const instance = new TurkishString("Ç-Ğ-I-İ-Ö-Ş-Ü");
-const str1 = turkishString.clear();                //C-G-I-I-O-S-U
+const str1 = instance.clear();                     //C-G-I-I-O-S-U
 const str2 = TurkishString.clear("Ç-Ğ-I-İ-Ö-Ş-Ü"); //C-G-I-I-O-S-U
 const str3 = TurkishString.clear(instance);        //C-G-I-I-O-S-U
 ```
