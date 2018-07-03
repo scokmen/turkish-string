@@ -7,7 +7,8 @@ module.exports = {
     library: 'TurkishString',
     libraryTarget: 'umd',
     path: path.resolve(__dirname, 'dist'),
-    filename: 'turkish-string.min.js'
+    filename: 'turkish-string.min.js',
+    globalObject: 'this'
   },
   module: {
     rules: [
