@@ -64,8 +64,7 @@ function toUpperCase(str) {
  * @returns {string}
  */
 function toTitleCase(str) {
-  const lowercase = toLowerCase(str)
-  return lowercase.split(' ').map(word => word.replace(word[0], toUpperCase(word[0]))).join(' ');
+  return toLowerCase(str).split(' ').map(word => word.replace(word[0], toUpperCase(word[0]))).join(' ');
 }
 
 /**
