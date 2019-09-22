@@ -3,7 +3,8 @@ const {
   isString,
   getCharCode,
   toLowerCase,
-  toUpperCase
+  toUpperCase,
+  toTitleCase,
 } = require("./string-utils");
 
 const COMPARISON_RESULT = {
@@ -96,6 +97,23 @@ TurkishString.toUpperCase = function (source) {
  */
 TurkishString.prototype.toUpperCase = function () {
   return TurkishString.toUpperCase(this.source);
+};
+
+/**
+ * converts to title case
+ * @param {string|TurkishString} source
+ * @returns {string}
+ */
+TurkishString.toTitleCase = function (source) {
+  return toTitleCase(TurkishString.resolve(source));
+};
+
+/**
+ * converts to title case
+ * @returns {string}
+ */
+TurkishString.prototype.toTitleCase = function () {
+  return TurkishString.toTitleCase(this.source);
 };
 
 /**
