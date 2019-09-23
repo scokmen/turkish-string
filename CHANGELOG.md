@@ -1,4 +1,4 @@
-## [1.0.3] - 2019-09-22
+## [1.2.0] - 2019-09-22
 
 **Added**
 - TurkishString.prototype.toTitleCase method added
