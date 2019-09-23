@@ -1,3 +1,9 @@
+## [1.2.0] - 2019-09-22
+
+**Added**
+- TurkishString.prototype.toTitleCase method added
+- TurkishString.toTitleCase static method added
+
 ## [1.0.1] - 2018-05-03
 [1.0.1]: https://github.com/scokmen/turkish-string/compare/1.0.0...1.0.1
 

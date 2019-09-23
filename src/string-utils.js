@@ -59,6 +59,15 @@ function toUpperCase(str) {
 }
 
 /**
+ * transforms the given string to title case with turkish special characters
+ * @param {string} str
+ * @returns {string}
+ */
+function toTitleCase(str) {
+  return toLowerCase(str).split(' ').map(word => word.replace(word[0], toUpperCase(word[0]))).join(' ');
+}
+
+/**
  * decides whether the given parameter is string or not
  * @param  {string} str
  * @returns {boolean}
@@ -81,5 +90,6 @@ module.exports = {
   isString,
   getCharCode,
   toLowerCase,
-  toUpperCase
+  toUpperCase,
+  toTitleCase,
 };
